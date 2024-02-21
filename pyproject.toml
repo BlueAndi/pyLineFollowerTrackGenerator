@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm", "wheel", "toml"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyLineFollowerTrackGenerator"
+version = "0.1.0"
+description = "A CLI tool to generate a Webots world with a random line follower track."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Andreas Merkle", email = "web@blue-andi.de" }
+]
+license = {text = "MIT License"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10"
+]
+dependencies = [
+    "toml>=0.10.2",
+    "numpy >= 1.26.4",
+    "scipy >= 1.12.0"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest > 5.0.0",
+  "pytest-cov[all]"
+]
+
+[project.urls]
+documentation = "https://github.com/BlueAndi/pyLineFollowerTrackGenerator"
+repository = "https://github.com/BlueAndi/pyLineFollowerTrackGenerator"
+tracker = "https://github.com/BlueAndi/pyLineFollowerTrackGenerator/issues"
+
+[project.scripts]
+pyLineFollowerTrackGenerator = "pyLineFollowerTrackGenerator.__main__:main"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
