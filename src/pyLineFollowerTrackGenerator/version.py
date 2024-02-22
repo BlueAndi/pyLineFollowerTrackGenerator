@@ -56,7 +56,7 @@ def init_from_metadata():
         list: Tool related informations
     """
 
-    my_metadata = meta.metadata('pyHexDump')
+    my_metadata = meta.metadata('pyLineFollowerTrackGenerator')
 
     return \
         my_metadata['Version'],\
