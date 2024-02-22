@@ -36,6 +36,7 @@ class Ret(IntEnum):
     """
     OK = 0
     ERROR = 1
+    ERROR_UNKNOWN_COMMAND = 2
 
 ################################################################################
 # Classes
