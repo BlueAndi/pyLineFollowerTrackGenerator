@@ -1,4 +1,4 @@
-"""Command to show a hex dump."""
+"""Command to generate a Webots world with a simple line follower track in a square arena."""
 
 # MIT License
 #
