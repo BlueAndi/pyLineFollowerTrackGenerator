@@ -1,3 +1,4 @@
-toml >= 0.10.2
+matplotlib >= 3.8.3
 numpy >= 1.26.4
 scipy >= 1.12.0
+toml >= 0.10.2
