@@ -181,6 +181,7 @@ def _exec(args): # pylint: disable=too-many-locals
     arena_height        = args.size # [m]
     world_file_name     = ""
     image_file_name     = ""
+    basic_time_step     = 8
 
     if args.worldFileName[0].endswith(".wbt") is False:
         world_file_name = args.worldFileName[0] + ".wbt"
@@ -196,6 +197,7 @@ def _exec(args): # pylint: disable=too-many-locals
         f"{world_author} <{world_email}>",
         world_creation_date
     ]
+    world_info["basicTimeStep"].value = basic_time_step
 
     viewpoint = Viewpoint()
 
