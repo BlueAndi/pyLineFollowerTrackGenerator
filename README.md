@@ -28,8 +28,9 @@ Used 3rd party libraries which are not part of the standard Python package:
 
 | Library | Description | License |
 | - | - | - |
-| [numpy](https://github.com/numpy/numpy) | Scientific computing | Mixed |
-| [scipy](https://github.com/scipy/scipy) | Splines | BSD-3 |
+| [matplotlib](https://github.com/matplotlib/matplotlib) | Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. | Mixed |
+| [numpy](https://github.com/numpy/numpy) | NumPy is the fundamental package for scientific computing with Python. | Mixed |
+| [scipy](https://github.com/scipy/scipy) | SciPy is an open-source software for mathematics, science, and engineering. | BSD-3 |
 | [toml](https://github.com/uiri/toml) | Parsing [TOML](https://en.wikipedia.org/wiki/TOML) | MIT License |
 
 # Issues, Ideas And Bugs
