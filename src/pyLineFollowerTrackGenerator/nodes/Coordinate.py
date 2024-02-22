@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import MFVec3f
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFVec3f
+)
 
 class Coordinate(Node): # pylint: disable=too-few-public-methods
     """Webots Coordinate VRML node.

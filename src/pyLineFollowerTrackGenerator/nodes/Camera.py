@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFNode, SFFloat, SFString, SFInt32, SFBool
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFInt32, SFString, SFFloat, SFNode, SFBool
+)
 
 class Camera(Node): # pylint: disable=too-few-public-methods
     """Webots Camera VRML node.

@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFFloat, SFString, MFString, MFFloat, SFBool
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFFloat, SFString, MFString, SFFloat, SFBool
+)
 
 class Robot(Node): # pylint: disable=too-few-public-methods
     """Webots Robot VRML node.

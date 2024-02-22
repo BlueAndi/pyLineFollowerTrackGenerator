@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFFloat, SFInt32, MFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFInt32, MFFloat, SFFloat
+)
 
 class ElevationGrid(Node): # pylint: disable=too-few-public-methods
     """Webots ElevationGrid VRML node.

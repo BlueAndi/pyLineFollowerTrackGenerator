@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFNode, SFString, SFInt32, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFInt32, SFNode, SFString, SFFloat
+)
 
 class Lidar(Node): # pylint: disable=too-few-public-methods
     """Webots Lidar VRML node.

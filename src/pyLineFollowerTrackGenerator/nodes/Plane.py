@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec2f
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFVec2f
+)
 
 class Plane(Node): # pylint: disable=too-few-public-methods
     """Webots Plane VRML node.

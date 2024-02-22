@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFBool, MFString
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFBool, MFString
+)
 
 class CadShape(Node): # pylint: disable=too-few-public-methods
     """Webots CadShape VRML node.

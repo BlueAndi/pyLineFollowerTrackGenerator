@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFNode, SFFloat, SFString, SFVec3f, SFRotation, SFBool
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFRotation, SFVec3f, SFFloat, SFNode, SFString
+)
 
 class Viewpoint(Node): # pylint: disable=too-few-public-methods
     """Webots Viewpoint VRML node.

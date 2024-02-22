@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFNode, MFInt32
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFInt32, SFNode
+)
 
 class IndexedLineSet(Node): # pylint: disable=too-few-public-methods
     """Webots IndexedLineSet VRML node.

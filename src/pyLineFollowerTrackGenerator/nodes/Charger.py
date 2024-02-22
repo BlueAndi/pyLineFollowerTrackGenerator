@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFFloat, SFBool, SFColor, MFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFBool, SFColor, MFFloat, SFFloat
+)
 
 class Charger(Node): # pylint: disable=too-few-public-methods
     """Webots Charger VRML node.

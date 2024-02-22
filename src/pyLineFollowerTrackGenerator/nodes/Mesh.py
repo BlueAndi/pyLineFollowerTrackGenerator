@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFBool, SFString, SFInt32, MFString
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFString, SFInt32, SFBool, MFString
+)
 
 class Mesh(Node): # pylint: disable=too-few-public-methods
     """Webots Mesh VRML node.

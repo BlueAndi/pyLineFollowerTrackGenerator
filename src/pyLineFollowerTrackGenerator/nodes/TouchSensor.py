@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import MFVec3f, SFString, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFVec3f, SFString, SFFloat
+)
 
 class TouchSensor(Node): # pylint: disable=too-few-public-methods
     """Webots TouchSensor VRML node.

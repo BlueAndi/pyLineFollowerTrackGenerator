@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec3f
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFVec3f
+)
 
 class BallJointParameters(Node): # pylint: disable=too-few-public-methods
     """Webots BallJointParameters VRML node.

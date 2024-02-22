@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec3f, SFColor, SFBool, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFColor, SFBool, SFVec3f, SFFloat
+)
 
 class SpotLight(Node): # pylint: disable=too-few-public-methods
     """Webots SpotLight VRML node.

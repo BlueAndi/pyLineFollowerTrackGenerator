@@ -153,12 +153,13 @@ def generate_node_class_file(dst_folder: str, node_name: str, fields: list[tuple
     result += "from pyLineFollowerTrackGenerator.base.node import Node\n"
 
     if len(unique_list_of_types) > 0:
-        result += "from pyLineFollowerTrackGenerator.base.fields import "
+        result += "from pyLineFollowerTrackGenerator.base.fields import (\n"
+        result += "    "
         for index, field_type in enumerate(unique_list_of_types):
             if index > 0:
                 result += ", "
             result += field_type
-        result += "\n"
+        result += "\n)\n"
 
     result += "\n"
     result += f"class {node_name}(Node): # pylint: disable=too-few-public-methods\n"
@@ -168,11 +169,19 @@ def generate_node_class_file(dst_folder: str, node_name: str, fields: list[tuple
     result += f"        super().__init__(\"{node_name}\")\n"
     if len(fields) > 0:
         result +=  "        self.add_fields([\n"
+        suppression = ""
         for index, (field_type, field_name, field_value) in enumerate(fields):
             if index > 0:
-                result += ",\n"
-            result += f"            {field_type}(\"{field_name}\", {field_value})"
-        result += "\n"
+                result += f",{suppression}\n"
+            single_line = f"            {field_type}(\"{field_name}\", {field_value})"
+            result += single_line
+
+            if len(single_line) > 88:
+                suppression = " # pylint: disable=line-too-long"
+            else:
+                suppression = ""
+
+        result += f"{suppression}\n"
         result +=  "        ])\n"
 
     with open(full_path, "w", encoding="utf-8") as file:

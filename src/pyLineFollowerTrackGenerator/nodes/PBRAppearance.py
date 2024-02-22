@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFNode, SFFloat, SFString, SFColor
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFNode, SFColor, SFString, SFFloat
+)
 
 class PBRAppearance(Node): # pylint: disable=too-few-public-methods
     """Webots PBRAppearance VRML node.

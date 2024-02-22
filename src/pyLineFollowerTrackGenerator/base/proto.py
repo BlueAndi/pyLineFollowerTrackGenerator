@@ -2,7 +2,7 @@
 
 from pyLineFollowerTrackGenerator.base.code_format import CodeFormat
 
-class Proto:
+class Proto: # pylint: disable=too-few-public-methods
     """Webots VRML prototype
     """
     def __init__(self, url: str) -> None:

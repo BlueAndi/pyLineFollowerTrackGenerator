@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFBool, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFBool, SFFloat
+)
 
 class InertialUnit(Node): # pylint: disable=too-few-public-methods
     """Webots InertialUnit VRML node.

@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec3f, SFString, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFString, SFVec3f, SFFloat
+)
 
 class ImmersionProperties(Node): # pylint: disable=too-few-public-methods
     """Webots ImmersionProperties VRML node.

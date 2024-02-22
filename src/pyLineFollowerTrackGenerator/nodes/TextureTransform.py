@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec2f, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFVec2f, SFFloat
+)
 
 class TextureTransform(Node): # pylint: disable=too-few-public-methods
     """Webots TextureTransform VRML node.

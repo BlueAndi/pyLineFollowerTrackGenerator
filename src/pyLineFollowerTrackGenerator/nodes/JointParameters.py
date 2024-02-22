@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec3f, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFVec3f, SFFloat
+)
 
 class JointParameters(Node): # pylint: disable=too-few-public-methods
     """Webots JointParameters VRML node.

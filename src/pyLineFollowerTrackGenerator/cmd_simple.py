@@ -124,8 +124,10 @@ def _generate_points_along_rectangle(num_points, border_width, border_height): #
 def _generate_spline(x, y):
     num_points = len(x)
 
-    # Generate spline representation of the line
-    tck, _ = splprep([x, y], s=0)
+    # Generate spline representation of the line.
+    # tck = A tuple (t, c, k) containing the vector of knots,
+    #       the B-spline coefficients and the degree of the spline.
+    tck, _ = splprep([x, y], s=0) # pylint: disable=unbalanced-tuple-unpacking
 
     # Generate points along the spline
     u_new = np.linspace(0, 1, num_points * 10)

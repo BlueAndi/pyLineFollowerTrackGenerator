@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFNode, MFNode, SFFloat, SFString, MFString, SFInt32, SFVec3f
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFInt32, MFNode, MFString, SFFloat, SFVec3f, SFNode, SFString
+)
 
 class WorldInfo(Node): # pylint: disable=too-few-public-methods
     """Webots WorldInfo VRML node.

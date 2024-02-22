@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFFloat, SFBool, MFVec3f, SFColor
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFVec3f, SFColor, SFBool, SFFloat
+)
 
 class LightSensor(Node): # pylint: disable=too-few-public-methods
     """Webots LightSensor VRML node.

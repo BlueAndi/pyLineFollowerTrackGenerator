@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFFloat
+)
 
 class Focus(Node): # pylint: disable=too-few-public-methods
     """Webots Focus VRML node.

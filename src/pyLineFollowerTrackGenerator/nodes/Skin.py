@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import MFNode, SFFloat, SFRotation, SFString, SFVec3f, SFBool
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFRotation, SFString, MFNode, SFVec3f, SFFloat, SFBool
+)
 
 class Skin(Node): # pylint: disable=too-few-public-methods
     """Webots Skin VRML node.

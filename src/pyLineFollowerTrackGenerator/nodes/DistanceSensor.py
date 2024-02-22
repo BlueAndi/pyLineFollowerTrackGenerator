@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFInt32, MFVec3f, SFString, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFVec3f, SFInt32, SFString, SFFloat
+)
 
 class DistanceSensor(Node): # pylint: disable=too-few-public-methods
     """Webots DistanceSensor VRML node.

@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFNode, MFVec3f, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFVec3f, SFNode, SFFloat
+)
 
 class Physics(Node): # pylint: disable=too-few-public-methods
     """Webots Physics VRML node.

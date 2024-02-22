@@ -5,7 +5,7 @@ from pyLineFollowerTrackGenerator.base.node import Node
 from pyLineFollowerTrackGenerator.base.field import Field
 from pyLineFollowerTrackGenerator.base.code_format import CodeFormat
 
-class SFString(Field):
+class SFString(Field): # pylint: disable=too-few-public-methods
     """Single string in UTF-8 format.
     """
     def __init__(self, name: str, value: str) -> None:
@@ -23,7 +23,7 @@ class SFString(Field):
         """
         return f"{self.name} \"{self.value}\""
 
-class MFString(Field):
+class MFString(Field): # pylint: disable=too-few-public-methods
     """Zero or more strings in UTF-8 format.
     """
     def __init__(self, name: str, values: list[str]) -> None:
@@ -42,7 +42,7 @@ class MFString(Field):
         value_list_as_str = ", ".join([f"\"{value}\"" for value in self.values])
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFBool(Field):
+class SFBool(Field): # pylint: disable=too-few-public-methods
     """Single boolean value.
     """
     def __init__(self, name: str, value: bool) -> None:
@@ -64,7 +64,7 @@ class SFBool(Field):
 
         return f"{self.name} {result}"
 
-class SFColor(Field):
+class SFColor(Field): # pylint: disable=too-few-public-methods
     """Single color.
     """
     def __init__(self, name: str, values: list[float]) -> None:
@@ -92,7 +92,7 @@ class SFColor(Field):
 
         return f"{self.name} {red} {green} {blue}"
 
-class MFColor(Field):
+class MFColor(Field): # pylint: disable=too-few-public-methods
     """Zero or more colors.
     """
     def __init__(self, name: str, values: Union[list[list[float]], list[float]]) -> None:
@@ -142,7 +142,7 @@ class MFColor(Field):
 
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFFloat(Field):
+class SFFloat(Field): # pylint: disable=too-few-public-methods
     """One single-precision floating point number.
     """
     def __init__(self, name: str, value: float) -> None:
@@ -160,7 +160,7 @@ class SFFloat(Field):
         """
         return f"{self.name} {self.value}"
 
-class MFFloat(Field):
+class MFFloat(Field): # pylint: disable=too-few-public-methods
     """Zero or more single-precision floating point numbers.
     """
     def __init__(self, name: str, values: list[float]) -> None:
@@ -179,7 +179,7 @@ class MFFloat(Field):
         value_list_as_str = ", ".join([str(value) for value in self.values])
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFDouble(Field):
+class SFDouble(Field): # pylint: disable=too-few-public-methods
     """One double-precision floating point number.
     """
     def __init__(self, name: str, value: float) -> None:
@@ -197,7 +197,7 @@ class SFDouble(Field):
         """
         return f"{self.name} {self.value}"
 
-class MFDouble(Field):
+class MFDouble(Field): # pylint: disable=too-few-public-methods
     """Zero or more double-precision floating point numbers.
     """
     def __init__(self, name: str, values: list[float]) -> None:
@@ -216,7 +216,7 @@ class MFDouble(Field):
         value_list_as_str = ", ".join([str(value) for value in self.values])
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFInt32(Field):
+class SFInt32(Field): # pylint: disable=too-few-public-methods
     """One 32-bit integer number.
     """
     def __init__(self, name: str, value: int) -> None:
@@ -234,7 +234,7 @@ class SFInt32(Field):
         """
         return f"{self.name} {self.value}"
 
-class MFInt32(Field):
+class MFInt32(Field): # pylint: disable=too-few-public-methods
     """Zero or more 32-bit integer numbers.
     """
     def __init__(self, name: str, values: list[int]) -> None:
@@ -253,7 +253,7 @@ class MFInt32(Field):
         value_list_as_str = ", ".join([str(value) for value in self.values])
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFNode(Field):
+class SFNode(Field): # pylint: disable=too-few-public-methods
     """One node.
     """
     def __init__(self, name: str, value: Node) -> None:
@@ -275,7 +275,7 @@ class SFNode(Field):
 
         return f"{self.name} {value}"
 
-class MFNode(Field):
+class MFNode(Field): # pylint: disable=too-few-public-methods
     """Zero or more nodes.
     """
     def __init__(self, name: str, values: list[Node]) -> None:
@@ -298,7 +298,7 @@ class MFNode(Field):
         value_list_as_str = ", ".join([value.export(code_format) for value in self.values])
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFRotation(Field):
+class SFRotation(Field): # pylint: disable=too-few-public-methods
     """One arbitrary rotation.
     """
     def __init__(self, name: str, values: list[float]) -> None:
@@ -327,7 +327,7 @@ class SFRotation(Field):
 
         return f"{self.name} {x} {y} {z} {a}"
 
-class MFRotation(Field):
+class MFRotation(Field): # pylint: disable=too-few-public-methods
     """Zero or more arbitrary rotations.
     """
     def __init__(self, name: str, values: Union[list[list[float]], list[float]]) -> None:
@@ -404,7 +404,7 @@ class MFRotation(Field):
 
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFVec2f(Field):
+class SFVec2f(Field): # pylint: disable=too-few-public-methods
     """One two-dimensional (2D) vector.
     """
     def __init__(self, name: str, values: list[float]) -> None:
@@ -431,7 +431,7 @@ class SFVec2f(Field):
 
         return f"{self.name} {x} {y}"
 
-class MFVec2f(Field):
+class MFVec2f(Field): # pylint: disable=too-few-public-methods
     """Zero or more two-dimensional (2D) vectors.
     """
     def __init__(self, name: str, values: Union[list[list[float]], list[float]]) -> None:
@@ -479,7 +479,7 @@ class MFVec2f(Field):
 
         return f"{self.name} [ {value_list_as_str} ]"
 
-class SFVec3f(Field):
+class SFVec3f(Field): # pylint: disable=too-few-public-methods
     """One three-dimensional (3D) vector.
     """
     def __init__(self, name: str, values: list[float]) -> None:
@@ -507,7 +507,7 @@ class SFVec3f(Field):
 
         return f"{self.name} {x} {y} {z}"
 
-class MFVec3f(Field):
+class MFVec3f(Field): # pylint: disable=too-few-public-methods
     """Zero or more three-dimensional (3D) vectors.
     """
     def __init__(self, name: str, values:  Union[list[list[float]], list[float]]) -> None:

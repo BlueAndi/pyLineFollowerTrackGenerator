@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFFloat, SFString, SFVec2f, SFInt32, MFFloat, SFVec3f
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFVec2f, SFInt32, MFFloat, SFVec3f, SFFloat, SFString
+)
 
 class ContactProperties(Node): # pylint: disable=too-few-public-methods
     """Webots ContactProperties VRML node.
@@ -22,8 +24,8 @@ class ContactProperties(Node): # pylint: disable=too-few-public-methods
             MFFloat("forceDependentSlip", 0),
             SFFloat("softERP", 0.2),
             SFFloat("softCFM", 0.001),
-            SFString("bumpSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/bump.wav"),
-            SFString("rollSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/roll.wav"),
-            SFString("slideSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/slide.wav"),
+            SFString("bumpSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/bump.wav"), # pylint: disable=line-too-long
+            SFString("rollSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/roll.wav"), # pylint: disable=line-too-long
+            SFString("slideSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/slide.wav"), # pylint: disable=line-too-long
             SFInt32("maxContactJoints", 10)
         ])

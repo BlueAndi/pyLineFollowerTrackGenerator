@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec3f, SFBool, SFDouble, MFColor
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFBool, MFColor, SFDouble, SFVec3f
+)
 
 class Muscle(Node): # pylint: disable=too-few-public-methods
     """Webots Muscle VRML node.

@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import MFNode, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    MFNode, SFFloat
+)
 
 class HingeJoint(Node): # pylint: disable=too-few-public-methods
     """Webots HingeJoint VRML node.

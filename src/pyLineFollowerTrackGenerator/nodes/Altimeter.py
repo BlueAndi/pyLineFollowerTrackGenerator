@@ -4,7 +4,9 @@
 # pylint: disable=invalid-name
 
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFString, SFFloat
+from pyLineFollowerTrackGenerator.base.fields import (
+    SFString, SFFloat
+)
 
 class Altimeter(Node): # pylint: disable=too-few-public-methods
     """Webots Altimeter VRML node.
