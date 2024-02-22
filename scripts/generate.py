@@ -117,7 +117,8 @@ def get_fields_from_code(code: str) -> tuple[str, str, str]:
 
         # Multiple single values: a b c ...
         else:
-            values = field_value.split()
+            pattern = re.compile(r'''((?:[^ "']|"[^"]*"|'[^']*')+)''')
+            values = pattern.split(field_value)[1::2]
 
             if len(values) > 1:
                 field_value = "[ "
