@@ -54,7 +54,7 @@ _CMD_NAME = "simple"
 # Functions
 ################################################################################
 
-def _generate_points_along_rectangle(num_points, border_width, border_height):
+def _generate_points_along_rectangle(num_points, border_width, border_height): # pylint: disable=too-many-locals
     num_points_on_x_axis = num_points * border_width // (2 * (border_width + border_height))
     num_points_on_y_axis = num_points * border_height // (2 * (border_width + border_height))
     tolerance = 10 # [%]
@@ -157,7 +157,7 @@ def _generate_track_image(image_file_name, image_width, image_height, image_line
 
     plt.savefig(image_file_name)
 
-def _exec(args):
+def _exec(args): # pylint: disable=too-many-locals
     """Generate the Webots world.
 
     Args:

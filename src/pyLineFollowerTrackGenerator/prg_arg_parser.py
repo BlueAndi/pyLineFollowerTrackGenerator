@@ -26,7 +26,7 @@
 # Imports
 ################################################################################
 import argparse
-from pyLineFollowerTrackGenerator.version import __version__, __author__, __email__, __repository__, __license__
+from pyLineFollowerTrackGenerator.version import __version__, __author__, __email__, __repository__, __license__ # pylint: disable=line-too-long
 
 ################################################################################
 # Variables
