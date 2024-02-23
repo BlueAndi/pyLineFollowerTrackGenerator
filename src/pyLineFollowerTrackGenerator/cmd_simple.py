@@ -25,6 +25,7 @@
 ################################################################################
 # Imports
 ################################################################################
+import sys
 from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
@@ -159,6 +160,16 @@ def _generate_track_image(image_file_name, image_width, image_height, image_line
 
     plt.savefig(image_file_name)
 
+def _get_cmd_line_parameters() -> str:
+    args = sys.argv[1:]
+    cmd_line = "Parameters:"
+
+    for arg in args:
+        cmd_line += " "
+        cmd_line += arg
+
+    return cmd_line
+
 def _exec(args): # pylint: disable=too-many-locals
     """Generate the Webots world.
 
@@ -196,11 +207,14 @@ def _exec(args): # pylint: disable=too-many-locals
     world_info["info"].values = [
         world_description,
         f"{world_author} <{world_email}>",
-        world_creation_date
+        world_creation_date,
+        _get_cmd_line_parameters()
     ]
     world_info["basicTimeStep"].value = basic_time_step
 
     viewpoint = Viewpoint()
+    viewpoint["orientation"].values = [0, 1, 0, np.pi / 4]
+    viewpoint["position"].values = [-2 * arena_width, 0, 2 * arena_width]
 
     proto_textured_background = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto") # pylint: disable=line-too-long
     textured_background = Node("TexturedBackground")
