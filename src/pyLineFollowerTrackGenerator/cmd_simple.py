@@ -135,7 +135,7 @@ def _generate_spline(x, y):
 
     return x_spline, y_spline
 
-def _generate_track_image(image_file_name, image_width, image_height, image_line_width):
+def _generate_track_image(image_file_name, image_width, image_height, image_line_width, num_points):
     # Create figure and axis
     dpi = 100
     _, ax = plt.subplots(figsize=(image_width/dpi, image_height/dpi),dpi=dpi)
@@ -144,7 +144,7 @@ def _generate_track_image(image_file_name, image_width, image_height, image_line
     ax.set_facecolor('white')
 
     # Generate random line
-    x, y = _generate_points_along_rectangle(20, image_width, image_height)
+    x, y = _generate_points_along_rectangle(num_points, image_width, image_height)
     x, y = _generate_spline(x, y)
 
     # Plot the line
@@ -179,6 +179,7 @@ def _exec(args): # pylint: disable=too-many-locals
     image_line_width    = args.imageSize * args.lineWidth / args.size # [pixel]
     arena_width         = args.size # [m]
     arena_height        = args.size # [m]
+    num_points          = args.numPoints
     world_file_name     = ""
     image_file_name     = ""
     basic_time_step     = 8
@@ -231,7 +232,7 @@ def _exec(args): # pylint: disable=too-many-locals
         rectangle_arena
     ])
 
-    _generate_track_image(image_file_name, image_width, image_height, image_line_width)
+    _generate_track_image(image_file_name, image_width, image_height, image_line_width, num_points)
 
     code_format = CodeFormat()
     world_file.save(world_file_name, code_format)
@@ -269,8 +270,8 @@ def cmd_simple_register(arg_sub_parsers):
         "--author",
         metavar="AUTHOR",
         required=False,
-        default="Anonymous",
-        help="The authors name."
+        default="anonymous",
+        help="The authors name. (default: %(default)s)"
     )
     parser.add_argument(
         "-d",
@@ -286,7 +287,7 @@ def cmd_simple_register(arg_sub_parsers):
         metavar="EMAIL",
         required=False,
         default="",
-        help="The authors email address."
+        help="The authors email address. (default: %(default)s)"
     )
     parser.add_argument(
         "-is",
@@ -295,7 +296,7 @@ def cmd_simple_register(arg_sub_parsers):
         required=False,
         type=int,
         default=1024,
-        help="The image width/length in pixel. Must be a power of 2! Default: 1024"
+        help="The image width/length in pixel. Must be a power of 2! (default: %(default)d)"
     )
     parser.add_argument(
         "-lw",
@@ -304,7 +305,16 @@ def cmd_simple_register(arg_sub_parsers):
         required=False,
         type=int,
         default=0.015,
-        help="The arena line width in [m]. Default: 0.015"
+        help="The arena line width in [m]. (default: %(default)d)"
+    )
+    parser.add_argument(
+        "-np",
+        "--numPoints",
+        metavar="NUM_POINTS",
+        required=False,
+        type=int,
+        default=20,
+        help="The total number of points used to generate the arena. (default: %(default)d)"
     )
     parser.add_argument(
         "-s",
@@ -313,7 +323,7 @@ def cmd_simple_register(arg_sub_parsers):
         required=False,
         type=int,
         default=1,
-        help="The arena width/length in [m]. Default: 1"
+        help="The arena width/length in [m]. (default: %(default)d)"
     )
     parser.add_argument(
         "-t",
@@ -321,7 +331,7 @@ def cmd_simple_register(arg_sub_parsers):
         metavar="TITLE",
         required=False,
         default="my world",
-        help="The world title. Default: \"my world\""
+        help="The world title. (default: %(default)s)"
     )
 
     return cmd_par_dict
