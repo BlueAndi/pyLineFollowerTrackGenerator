@@ -7,6 +7,8 @@ A CLI tool to generate a Webots world with a random line follower track.
 
 * [Installation](#installation)
 * [Usage](#usage)
+  * [Track: Simple](#track-simple)
+  * [Track: \<...\>](#track-)
 * [Used Libraries](#used-libraries)
 * [Issues, Ideas And Bugs](#issues-ideas-and-bugs)
 * [License](#license)
@@ -21,7 +23,23 @@ $ pip install .
 
 # Usage
 
-TODO
+## Track: Simple
+Generate a simple line follower track with the "simple" command.
+
+Use ```./pyLineFollowerTrackGenerator simple --help``` to see all possible parameters.
+
+Example: A arena 2 x 2 m generated with splines through 12 points. The line width is 1.5 cm by default.
+```bash
+$ ./pyLineFollowerTrackGenerator simple simple.wbt -s=2 -np=12
+```
+![example_simple](./doc/examples/simple/example_simple.png)
+Files:
+* [simple.wbt](./doc/examples/simple/simple.wbt)
+* [simple.png](./doc/examples/simple/simple.png)
+
+## Track: &lt;...&gt;
+You are invited to extend it with more different kind of tracks. ;-)
+
 
 # Used Libraries
 Used 3rd party libraries which are not part of the standard Python package:
