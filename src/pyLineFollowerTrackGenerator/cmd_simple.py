@@ -204,6 +204,14 @@ def _exec(args): # pylint: disable=too-many-locals
         world_file_name = args.worldFileName[0]
         image_file_name = args.worldFileName[0].replace(".wbt", ".png")
 
+    # Limit lower number of points to enforce that the splines can be drawn
+    # within the image along the virtual rectangle.
+    if num_points < 8:
+        num_points = 8
+
+        if is_debug_mode is True:
+            print(f"Number of points limited to {num_points}.\n")
+
     world_info = WorldInfo()
     world_info["title"].value = world_title
     world_info["info"].values = [
