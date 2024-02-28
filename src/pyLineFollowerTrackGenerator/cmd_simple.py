@@ -171,7 +171,7 @@ def _generate_start_stop_line(tck, u, distance_from_middle, length) -> tuple[lis
     nx = -dy / mag  # x-component of the unit normal vector
     ny = dx / mag   # y-component of the unit normal vector
 
-    # Determine the points on the perpendicular lines to form 
+    # Determine the points on the perpendicular lines to form
     x_perpendicular_low = [
         x_spline - distance_from_middle * nx,
         x_spline - (distance_from_middle + length) * nx
@@ -275,7 +275,8 @@ def _get_cmd_line_parameters() -> str:
 
     return cmd_line
 
-def _exec(args): # pylint: disable=too-many-locals
+# pylint: disable=too-many-locals, too-many-statements
+def _exec(args):
     """Generate the Webots world.
 
     Args:
