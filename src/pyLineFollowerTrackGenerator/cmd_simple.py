@@ -44,8 +44,9 @@ from pyLineFollowerTrackGenerator.nodes.ImageTexture import ImageTexture
 ################################################################################
 # Variables
 ################################################################################
-
 _CMD_NAME = "simple"
+_START_STOP_LINE_WIDTH = 0.05 # [m]
+_START_STOP_LINE_DISTANCE_TO_MIDDLE = 0.025 # [m]
 
 ################################################################################
 # Classes
@@ -55,18 +56,30 @@ _CMD_NAME = "simple"
 # Functions
 ################################################################################
 
-def _generate_points_along_rectangle(num_points, border_width, border_height): # pylint: disable=too-many-locals
-    num_points_on_x_axis = num_points * border_width // (2 * (border_width + border_height))
-    num_points_on_y_axis = num_points * border_height // (2 * (border_width + border_height))
+# pylint: disable=too-many-locals, line-too-long
+def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> tuple[list[int], list[int]]:
+    """Generate a number of points along a virtual rectangle with the given
+        width/height.
+
+    Args:
+        num_points (int): Number of points to generate.
+        rect_width (int): Virtual rectangle width in pixels.
+        rect_height (int): Virtual rectangle height in pixels.
+
+    Returns:
+        tuple[list[int], list[int]]: Point coordinates (x, y)
+    """
+    num_points_on_x_axis = num_points * rect_width // (2 * (rect_width + rect_height))
+    num_points_on_y_axis = num_points * rect_height // (2 * (rect_width + rect_height))
     tolerance = 10 # [%]
-    width = border_width * (100 - 2 * tolerance) // 100
-    height = border_height * (100 - 2 * tolerance) // 100
+    width = rect_width * (100 - 2 * tolerance) // 100
+    height = rect_height * (100 - 2 * tolerance) // 100
     x_tolerance = width * tolerance // 100
     y_tolerance = height * tolerance // 100
     distance_x = width // num_points_on_x_axis
     distance_y = height // num_points_on_y_axis
-    points_x = []
-    points_y = []
+    x_points = []
+    y_points = []
 
     # Walk along x-axis in positive direction
     y_base = 0
@@ -77,8 +90,8 @@ def _generate_points_along_rectangle(num_points, border_width, border_height): #
         x += x_tolerance
         y += y_tolerance
 
-        points_x.append(x)
-        points_y.append(y)
+        x_points.append(x)
+        y_points.append(y)
 
     # Walk along y-axis in positive direction
     x_base = width - 1
@@ -89,8 +102,8 @@ def _generate_points_along_rectangle(num_points, border_width, border_height): #
         x += x_tolerance
         y += y_tolerance
 
-        points_x.append(x)
-        points_y.append(y)
+        x_points.append(x)
+        y_points.append(y)
 
     # Walk along x-axis in negative direction
     y_base = height - 1
@@ -101,8 +114,8 @@ def _generate_points_along_rectangle(num_points, border_width, border_height): #
         x += x_tolerance
         y += y_tolerance
 
-        points_x.append(x)
-        points_y.append(y)
+        x_points.append(x)
+        y_points.append(y)
 
     # Walk along y-axis in negative direction
     x_base = 0
@@ -113,10 +126,10 @@ def _generate_points_along_rectangle(num_points, border_width, border_height): #
         x += x_tolerance
         y += y_tolerance
 
-        points_x.append(x)
-        points_y.append(y)
+        x_points.append(x)
+        y_points.append(y)
 
-    return points_x, points_y
+    return x_points, y_points
 
 def _generate_spline(x, y):
     num_points = len(x)
@@ -131,26 +144,117 @@ def _generate_spline(x, y):
     u_new = np.linspace(0, 1, num_points * 10)
     x_spline, y_spline = splev(u_new, tck, der=0)
 
-    return x_spline, y_spline
+    return x_spline, y_spline, tck
 
-def _generate_track_image(image_file_name, num_points, image_width, image_height, image_line_width, is_debug_mode): # pylint: disable=too-many-arguments, line-too-long
+def _generate_start_stop_line(tck, u, distance_from_middle, length) -> tuple[list[float], list[float], list[float], list[float]]:
+    """Generate points for a start-/stop-line. The start-/stop-line
+        start at the given distance from the line middle on both
+        sides and has a dediacted length.
+
+    Args:
+        tck (tuple(t,c,k)): Knots vector
+        u (float): Location on the virtual rectangle spline [0..1]
+        distance_from_middle (int): Distance from the line middle in pixels.
+        length (int): Length in pixels of one part of the start-/stop-line.
+
+    Returns:
+        tuple[list[float], list[float], list[float], list[float]]: Lower and upper points of the start-/stop-line.
+    """
+    # Calculate the derivative of the spline at the given parameter u.
+    dx, dy = splev(u, tck, der=1)
+
+    # Determine the point on the spline at the given parameter u.
+    x_spline, y_spline = splev(u, tck)
+
+    # Determine the unit normal vector to the tangent
+    mag = np.sqrt(dx**2 + dy**2)
+    nx = -dy / mag  # x-component of the unit normal vector
+    ny = dx / mag   # y-component of the unit normal vector
+
+    # Determine the points on the perpendicular lines to form 
+    x_perpendicular_low = [
+        x_spline - distance_from_middle * nx,
+        x_spline - (distance_from_middle + length) * nx
+    ]
+    y_perpendicular_low = [
+        y_spline - distance_from_middle * ny,
+        y_spline - (distance_from_middle + length) * ny
+    ]
+
+    x_perpendicular_high = [
+        x_spline + distance_from_middle * nx,
+        x_spline + (distance_from_middle + length) * nx
+    ]
+    y_perpendicular_high = [
+        y_spline + distance_from_middle * ny,
+        y_spline + (distance_from_middle + length) * ny
+    ]
+
+    return x_perpendicular_low, y_perpendicular_low, x_perpendicular_high, y_perpendicular_high
+
+# pylint: disable=too-many-arguments, line-too-long
+def _generate_track_image(num_points, image_width, image_height, image_line_width, pixel_per_m, is_debug_mode) -> plt.Figure:
+    """Generate the image with the line follower track.
+
+    Args:
+        num_points (int): Number of points on the used virtual rectangle.
+        image_width (int): Image width in pixels.
+        image_height (int): Image height in pixels.
+        image_line_width (int): The line follower line width in pixels.
+        pixel_per_m (float): Conversion factor pixel per m.
+        is_debug_mode (bool): In debug mode the image will get additional information.
+
+    Returns:
+        plt.Figure: Figure
+    """
+    line_color = "black"
+    line_points_color = "red"
+    start_stop_line_color = line_color
+    background_color = "white"
+
+    # 12.5 % after the first point, means in the middle of the lower rectangle part.
+    start_stop_line_location = 0.125
+
+    # In debug mode show the start-/stop-line in different color.
+    if is_debug_mode is True:
+        start_stop_line_color = "orange"
+
     # Create figure and axis
-    dpi = 100
-    _, ax = plt.subplots(figsize=(image_width/dpi, image_height/dpi),dpi=dpi)
+    dpi = 72 # Use a dpi of 72 to plot with exact pixel sizes.
+    fig, ax = plt.subplots(figsize=(image_width/dpi, image_height/dpi),dpi=dpi)
 
-    # Set white background
-    ax.set_facecolor('white')
+    # Set background color
+    ax.set_facecolor(background_color)
 
     # Generate random line
-    rect_x, rect_y = _generate_points_along_rectangle(num_points, image_width, image_height)
-    x, y = _generate_spline(rect_x, rect_y)
+    x_rect, y_rect = _generate_points_along_rectangle(num_points, image_width, image_height)
+    x_spline, y_spline, tck = _generate_spline(x_rect, y_rect)
 
     # Plot the line
-    ax.plot(x, y, color="black", linewidth=image_line_width, zorder=1)
+    ax.plot(x_spline, y_spline, color=line_color, linewidth=image_line_width, zorder=1)
 
     # Show the points used for generation in debug mode.
     if is_debug_mode is True:
-        ax.scatter(rect_x, rect_y, color="red", linewidth=image_line_width, zorder=2)
+        ax.scatter(x_rect, y_rect, color=line_points_color, linewidth=image_line_width, zorder=2)
+
+    # Plot start- and stop-line
+    x_perpendicular_low, y_perpendicular_low, \
+    x_perpendicular_high, y_perpendicular_high = \
+        _generate_start_stop_line(  tck,
+                                    start_stop_line_location,
+                                    _START_STOP_LINE_DISTANCE_TO_MIDDLE * pixel_per_m,
+                                    _START_STOP_LINE_WIDTH * pixel_per_m)
+
+    ax.plot(x_perpendicular_low,
+            y_perpendicular_low,
+            color=start_stop_line_color,
+            linewidth=image_line_width,
+            zorder=2)
+    ax.plot(x_perpendicular_high,
+            y_perpendicular_high,
+            color=start_stop_line_color,
+            linewidth=image_line_width,
+            zorder=2)
 
     # Set limits
     ax.set_xlim(0, image_width)
@@ -159,7 +263,7 @@ def _generate_track_image(image_file_name, num_points, image_width, image_height
     # Hide axes
     ax.axis('off')
 
-    plt.savefig(image_file_name)
+    return fig
 
 def _get_cmd_line_parameters() -> str:
     args = sys.argv[1:]
@@ -188,10 +292,11 @@ def _exec(args): # pylint: disable=too-many-locals
     world_creation_date = datetime.today().strftime('%Y-%m-%d')
     image_width         = args.imageSize # [pixel]
     image_height        = args.imageSize # [pixel]
-    image_line_width    = args.imageSize * args.lineWidth / args.size # [pixel]
+    image_line_width    = args.imageSize * args.lineWidth // args.size # [pixel]
     arena_width         = args.size # [m]
     arena_height        = args.size # [m]
     num_points          = args.numPoints
+    pixel_per_m         = args.imageSize / args.size
     world_file_name     = ""
     image_file_name     = ""
     basic_time_step     = 8
@@ -256,12 +361,18 @@ def _exec(args): # pylint: disable=too-many-locals
         rectangle_arena
     ])
 
-    _generate_track_image(  image_file_name,
-                            num_points,
-                            image_width,
-                            image_height,
-                            image_line_width,
-                            is_debug_mode)
+    fig = _generate_track_image(num_points,
+                                image_width,
+                                image_height,
+                                image_line_width,
+                                pixel_per_m,
+                                is_debug_mode)
+
+    if is_debug_mode is True:
+        plt.show()
+
+    # Save image in filesystem.
+    fig.savefig(image_file_name, dpi="figure")
 
     code_format = CodeFormat()
     world_file.save(world_file_name, code_format)
