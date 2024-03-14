@@ -147,6 +147,56 @@ class Friction():
 
                     count += 1
 
+    def _get_static_friction(self, material_pair: dict, material_property: str) -> float:
+        """Get the static friction of the material pair and the required property,
+            like e.g. dry or wet.
+
+        Args:
+            material_pair (dict): The material pair.
+            material_property (str): Material property, like e.g. dry or wet.
+
+        Returns:
+            float: Static friction
+        """
+        static_friction_value = None
+
+        if "static" in material_pair:
+            if material_property in material_pair["static"]:
+                friction = material_pair["static"][material_property]
+                if isinstance(friction, dict):
+                    friction_min = friction["min"]
+                    friction_max = friction["max"]
+                    static_friction_value = random.uniform(friction_min, friction_max)
+                else:
+                    static_friction_value = friction
+
+        return static_friction_value
+
+    def _get_dynamic_friction(self, material_pair: dict, material_property: str) -> float:
+        """Get the dynamic friction of the material pair and the required property,
+            like e.g. dry or wet.
+
+        Args:
+            material_pair (dict): The material pair.
+            material_property (str): Material property, like e.g. dry or wet.
+
+        Returns:
+            float: Dynamic friction
+        """
+        dynamic_friction_value = None
+
+        if "sliding" in material_pair:
+            if material_property in material_pair["sliding"]:
+                friction = material_pair["sliding"][material_property]
+                if isinstance(friction, dict):
+                    friction_min = friction["min"]
+                    friction_max = friction["max"]
+                    dynamic_friction_value = random.uniform(friction_min, friction_max)
+                else:
+                    dynamic_friction_value = friction
+
+        return dynamic_friction_value
+
     # pylint: disable=line-too-long
     def get_friction(self, material1: str, material2: str, material_property: str) -> tuple[Union[None,float], Union[None,float]]:
         """Get friction between the two materials and by considering whether its
@@ -168,26 +218,8 @@ class Friction():
             for material_pair in self._friction_data["friction"]:
                 if material1 in (material_pair["material1"], material_pair["material2"]):
                     if material2 in (material_pair["material1"], material_pair["material2"]):
-
-                        if "static" in material_pair:
-                            if material_property in material_pair["static"]:
-                                friction = material_pair["static"][material_property]
-                                if isinstance(friction, dict):
-                                    friction_min = friction["min"]
-                                    friction_max = friction["max"]
-                                    static_friction_value = random.uniform(friction_min, friction_max)
-                                else:
-                                    static_friction_value = friction
-
-                        if "sliding" in material_pair:
-                            if material_property in material_pair["sliding"]:
-                                friction = material_pair["sliding"][material_property]
-                                if isinstance(friction, dict):
-                                    friction_min = friction["min"]
-                                    friction_max = friction["max"]
-                                    dynamic_friction_value = random.uniform(friction_min, friction_max)
-                                else:
-                                    dynamic_friction_value = friction
+                        static_friction_value = self._get_static_friction(material_pair, material_property)
+                        dynamic_friction_value  = self._get_dynamic_friction(material_pair, material_property)
 
         return (static_friction_value, dynamic_friction_value)
 
