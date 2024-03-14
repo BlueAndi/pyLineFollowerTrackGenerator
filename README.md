@@ -9,6 +9,7 @@ A CLI tool to generate a Webots world with a random line follower track.
 * [Usage](#usage)
   * [Track: Simple](#track-simple)
   * [Track: \<...\>](#track-)
+  * [Friction](#friction)
 * [Used Libraries](#used-libraries)
 * [Issues, Ideas And Bugs](#issues-ideas-and-bugs)
 * [License](#license)
@@ -40,6 +41,31 @@ Files:
 ## Track: &lt;...&gt;
 You are invited to extend it with more different kind of tracks. ;-)
 
+## Friction
+Get a list of available material pairs with their friction parameters by using
+
+```bash
+$ ./pyLineFollowerTrackGenerator friction
+```
+
+or get a filtered list e.g. for steel:
+
+```bash
+$ ./pyLineFollowerTrackGenerator friction steel
+```
+
+Specify the material for the ground and for the robot contact material, as well as the material property:
+```bash
+$ ./pyLineFollowerTrackGenerator simple simple.wbt -s=2 -np=12 -mg cardboard -mr rubber -mp dry
+```
+
+Notes:
+* Static and dynamic friction are supported.
+* Only symmetric friction is supported.
+* If the friction has a range, the friction will be determined random (min &lt;= friction &lt;= max).
+* Find the source for the friction parameters in [friction database](./database/friction.json).
+* In the [Webots contact properties](https://www.cyberbotics.com/doc/reference/contactproperties) the friction parameters are configured.
+* Details about the physical simulation are explained in the [Open Physics Engine manual](https://ode.org/wiki/index.php?title=Manual#Contact), which is used by Webots.
 
 # Used Libraries
 Used 3rd party libraries which are not part of the standard Python package:

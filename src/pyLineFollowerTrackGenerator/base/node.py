@@ -1,5 +1,6 @@
 """Webots VRML base node"""
 
+from typing import Union
 from pyLineFollowerTrackGenerator.base.code_format import CodeFormat
 from pyLineFollowerTrackGenerator.base.field import Field
 
@@ -22,14 +23,17 @@ class Node:
 
         return field
 
-    def add_fields(self, fields: list[Field]) -> None:
-        """Add fields to the node.
+    def add_fields(self, fields: Union[Field, list[Field]]) -> None:
+        """Add field(s) to the node.
 
         Args:
-            fields (list[Field]): One ore more fields
+            fields (union[Field, list[Field]]): One ore more fields
         """
-        for field in fields:
-            self._field_dict[field.name] = field
+        if isinstance(fields, list):
+            for field in fields:
+                self._field_dict[field.name] = field
+        else:
+            self._field_dict[fields.name] = fields
 
     def export(self, code_format: CodeFormat) -> str:
         """Export to string.

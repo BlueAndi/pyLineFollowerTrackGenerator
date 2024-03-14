@@ -16,12 +16,12 @@ class ContactProperties(Node): # pylint: disable=too-few-public-methods
         self.add_fields([
             SFString("material1", "default"),
             SFString("material2", "default"),
-            MFFloat("coulombFriction", 1),
+            MFFloat("coulombFriction", [ 1 ]),
             SFVec2f("frictionRotation", [ 0, 0 ]),
             SFVec3f("rollingFriction", [ 0, 0, 0 ]),
             SFFloat("bounce", 0.5),
             SFFloat("bounceVelocity", 0.01),
-            MFFloat("forceDependentSlip", 0),
+            MFFloat("forceDependentSlip", [ 0 ]),
             SFFloat("softERP", 0.2),
             SFFloat("softCFM", 0.001),
             SFString("bumpSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/bump.wav"), # pylint: disable=line-too-long

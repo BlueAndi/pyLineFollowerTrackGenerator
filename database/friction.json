@@ -1,0 +1,1531 @@
+{
+    "friction":[{
+        "material1": "aluminum",
+        "material2": "aluminum",
+        "static": {
+            "dry": {
+                "min": 1.05,
+                "max": 1.35
+            },
+            "lubricated": 0.3
+        },
+        "sliding": {
+            "dry": 1.4
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "aluminum-bronze",
+        "material2": "steel",
+        "static": {
+            "dry": 0.45
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "aluminum",
+        "material2": "mild steel",
+        "static": {
+            "dry": 0.61
+        },
+        "sliding": {
+            "dry": 0.47
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "aluminum",
+        "material2": "snow",
+        "static": {
+            "wet": 0.4,
+            "dry": 0.35
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "brake material",
+        "material2": "cast iron",
+        "static": {
+            "dry": 0.4,
+            "wet": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "brass",
+        "material2": "steel",
+        "static": {
+            "dry": 0.51,
+            "lubricated": 0.19,
+            "castor oil": 0.11
+        },
+        "sliding": {
+            "dry": 0.44
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "brass",
+        "material2": "cast iron",
+        "sliding": {
+            "dry": 0.3
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "brass",
+        "material2": "ice",
+        "sliding": {
+            "clean": 0.02
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "brick",
+        "material2": "wood",
+        "static": {
+            "dry": 0.6
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "bronze",
+        "material2": "steel",
+        "static": {
+            "lubricated": 0.16
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "bronze",
+        "material2": "cast iron",
+        "sliding": {
+            "dry": 0.22
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "bronze sintered",
+        "material2": "steel",
+        "static": {
+            "lubricated": 0.13
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "cadmium",
+        "material2": "cadmium",
+        "static": {
+            "dry": 0.5,
+            "lubricated": 0.05
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "cadmium",
+        "material2": "chromium",
+        "static": {
+            "dry": 0.41,
+            "lubricated": 0.34
+        }},
+    {
+        "material1": "cadmium",
+        "material2": "mild steel",
+        "sliding": {
+            "dry": 0.46
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "cast iron",
+        "material2": "cast iron",
+        "static": {
+            "dry": 1.1
+        },
+        "sliding": {
+            "dry": 0.15,
+            "lubricated": 0.07
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "cast iron",
+        "material2": "oak",
+        "sliding": {
+            "dry": 0.49,
+            "lubricated": 0.075
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "cast iron",
+        "material2": "steel",
+        "static": {
+            "dry": 0.4,
+            "lubricated": 0.21
+        },
+        "sliding": {
+            "dry": 0.23,
+            "lubricated": 0.133
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "car tire",
+        "material2": "asphalt",
+        "static": {
+            "dry": 0.72
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "car tire",
+        "material2": "grass",
+        "static": {
+            "dry": 0.35
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "carbon hard",
+        "material2": "carbon",
+        "static": {
+            "dry": 0.16,
+            "lubricated": {
+                "min": 0.12,
+                "max": 0.14
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "carbon",
+        "material2": "steel",
+        "static": {
+            "dry": 0.14,
+            "lubricated": {
+                "min": 0.11,
+                "max": 0.14
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "chromium",
+        "material2": "chromium",
+        "static": {
+            "dry": 0.41,
+            "lubricated": 0.34
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "copper-lead alloy",
+        "material2": "steel",
+        "static": {
+            "dry": 0.22
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "copper",
+        "material2": "copper",
+        "static": {
+            "dry": 1.6,
+            "lubricated": 0.08
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "copper",
+        "material2": "cast iron",
+        "static": {
+            "dry": 1.05
+        },
+        "sliding": {
+            "dry": 0.29
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "copper",
+        "material2": "steel",
+        "static": {
+            "dry": 0.53
+        },
+        "sliding": {
+            "dry": 0.36,
+            "lubricated": 0.18
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "copper",
+        "material2": "glass",
+        "static": {
+            "dry": 0.68
+        },
+        "sliding": {
+            "dry": 0.53
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "cotton",
+        "material2": "cotton",
+        "static": {
+            "threads": 0.3
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "diamond",
+        "material2": "diamond",
+        "static": {
+            "dry": 0.1,
+            "lubricated": {
+                "min": 0.05,
+                "max": 0.1
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "diamond",
+        "material2": "metal",
+        "static": {
+            "dry": {
+                "min": 0.1,
+                "max": 0.15
+            },
+            "lubricated": 0.1
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "garnet",
+        "material2": "steel",
+        "sliding": {
+            "dry": 0.39
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "glass",
+        "material2": "glass",
+        "static": {
+            "dry": {
+                "min": 0.9,
+                "max": 1.0
+            },
+            "lubricated": {
+                "min": 0.1,
+                "max": 0.6
+            }
+        },
+        "sliding": {
+            "dry": 0.4,
+            "lubricated": {
+                "min": 0.09,
+                "max": 0.12
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "glass",
+        "material2": "metal",
+        "static": {
+            "dry": {
+                "min": 0.5,
+                "max": 0.7
+            },
+            "lubricated": {
+                "min": 0.2,
+                "max": 0.3
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "glass",
+        "material2": "nickel",
+        "static": {
+            "dry": 0.78,
+            "lubricated": 0.56
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "graphite",
+        "material2": "steel",
+        "static": {
+            "dry": 0.1,
+            "lubricated": 0.1
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "graphite",
+        "material2": "graphite in vacuum",
+        "static": {
+            "dry": {
+                "min": 0.5,
+                "max": 0.8
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "graphite",
+        "material2": "graphite",
+        "static": {
+            "dry": 0.1,
+            "lubricated": 0.1
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "hemp rope",
+        "material2": "timber",
+        "static": {
+            "dry": 0.5
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "horseshoe",
+        "material2": "rubber",
+        "static": {
+            "dry": 0.68
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "horseshoe",
+        "material2": "concrete",
+        "static": {
+            "dry": 0.58
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "ice 0°C",
+        "material2": "ice 0°C",
+        "static": {
+            "clean": 0.1
+        },
+        "sliding": {
+            "clean": 0.02
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "ice -12°C",
+        "material2": "ice -12°C",
+        "static": {
+            "clean": 0.3
+        },
+        "sliding": {
+            "clean": 0.035
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "ice -80°C",
+        "material2": "ice -80°C",
+        "static": {
+            "clean": 0.5
+        },
+        "sliding": {
+            "clean": 0.09
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "ice",
+        "material2": "wood",
+        "static": {
+            "dry": 0.05
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "ice",
+        "material2": "steel",
+        "static": {
+            "dry": 0.03
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "iron",
+        "material2": "iron",
+        "static": {
+            "dry": 1.0,
+            "lubricated": {
+                "min": 0.15,
+                "max": 0.20
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "lead",
+        "material2": "cast iron",
+        "sliding": {
+            "dry": 0.43
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "leather",
+        "material2": "oak",
+        "static": {
+            "parallel to grain": 0.61
+        },
+        "sliding": {
+            "parallel to grain": 0.52
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "leather",
+        "material2": "metal",
+        "static": {
+            "dry": 0.4,
+            "lubricated": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "leather",
+        "material2": "wood",
+        "static": {
+            "dry": {
+                "min": 0.3,
+                "max": 0.4
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "leather",
+        "material2": "clean",
+        "static": {
+            "dry": 0.6
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "leather",
+        "material2": "cast iron",
+        "static": {
+            "dry": 0.6
+        },
+        "sliding": {
+            "dry": 0.56
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "leather fiber",
+        "material2": "cast iron",
+        "static": {
+            "dry": 0.31
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "leather fiber",
+        "material2": "aluminum",
+        "static": {
+            "dry": 0.30
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "magnesium",
+        "material2": "magnesium",
+        "static": {
+            "dry": 0.6,
+            "lubricated": 0.08
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "magnesium",
+        "material2": "steel",
+        "sliding": {
+            "dry": 0.42
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "magnesium",
+        "material2": "cast iron",
+        "sliding": {
+            "dry": 0.25
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "masonry",
+        "material2": "brick",
+        "static": {
+            "dry": {
+                "min": 0.6,
+                "max": 0.7
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "mica",
+        "material2": "mica",
+        "static": {
+            "Freshly cleaved": 1.0
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "nickel",
+        "material2": "nickel",
+        "static": {
+            "dry": {
+                "min": 0.7,
+                "max": 1.1
+            },
+            "lubricated": 0.28
+        },
+        "sliding": {
+            "dry": 0.53,
+            "lubricated": 0.12
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "nickel",
+        "material2": "mild steel",
+        "sliding": {
+            "dry": 0.64,
+            "lubricated": 0.178
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "nylon",
+        "material2": "nylon",
+        "static": {
+            "dry": {
+                "min": 0.15,
+                "max": 0.25
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "nylon",
+        "material2": "steel",
+        "static": {
+            "dry": 0.4
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "nylon",
+        "material2": "snow",
+        "static": {
+            "dry": 0.3,
+            "wet": 0.4
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "oak",
+        "material2": "oak parallel grain",
+        "static": {
+            "dry": 0.62
+        },
+        "sliding": {
+            "dry": 0.48
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "oak",
+        "material2": "oak cross grain",
+        "static": {
+            "dry": 0.54
+        },
+        "sliding": {
+            "dry": 0.32,
+            "lubricated": 0.072
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "paper",
+        "material2": "cast iron",
+        "static": {
+            "dry": 0.20
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "phosphor-bronze",
+        "material2": "steel",
+        "static": {
+            "dry": 0.35
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "platinum",
+        "material2": "platinum",
+        "static": {
+            "dry": 1.2,
+            "lubricated": 0.25
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "plexiglas",
+        "material2": "plexiglas",
+        "static": {
+            "dry": 0.8,
+            "lubricated": 0.8
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "plexiglas",
+        "material2": "steel",
+        "static": {
+            "dry": {
+                "min": 0.4,
+                "max": 0.5
+            },
+            "lubricated": {
+                "min": 0.4,
+                "max": 0.5
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polystyrene",
+        "material2": "polystyrene",
+        "static": {
+            "dry": 0.5,
+            "lubricated": 0.5
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polystyrene",
+        "material2": "steel",
+        "static": {
+            "dry": {
+                "min": 0.3,
+                "max": 0.35
+            },
+            "lubricated": {
+                "min": 0.3,
+                "max": 0.35
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polyethylene",
+        "material2": "polytehylene",
+        "static": {
+            "dry": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polyethylene",
+        "material2": "steel",
+        "static": {
+            "dry": 0.2,
+            "lubricated": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "rubber",
+        "material2": "rubber",
+        "static": {
+            "dry": 1.16
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "rubber",
+        "material2": "cardboard",
+        "static": {
+            "dry": {
+                "min": 0.5,
+                "max": 0.8
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "rubber",
+        "material2": "asphalt",
+        "static": {
+            "dry": 0.9
+        },
+        "sliding": {
+            "dry": {
+                "min": 0.5,
+                "max": 0.8
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "silk",
+        "material2": "silk",
+        "static": {
+            "clean": 0.25
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "silver",
+        "material2": "silver",
+        "static": {
+            "dry": 1.4,
+            "lubricated": 0.55
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "sapphire",
+        "material2": "sapphire",
+        "static": {
+            "dry": 0.2,
+            "lubricated": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "skin",
+        "material2": "metal",
+        "static": {
+            "dry": {
+                "min": 0.8,
+                "max": 1.0
+            },
+            "lubricated": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "steel",
+        "material2": "steel",
+        "static": {
+            "dry": {
+                "min": 0.5,
+                "max": 0.8
+            },
+            "lubricated": 0.16,
+            "castor oil": 0.15,
+            "light mineral oil": 0.23,
+            "lard": 0.11
+        },
+        "sliding": {
+            "castor oil": 0.081,
+            "stearic Acid": 0.15,
+            "lard": 0.084,
+            "graphite": 0.058
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "steel",
+        "material2": "graphite",
+        "static": {
+            "dry": 0.21
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "straw fiber",
+        "material2": "cast iron",
+        "static": {
+            "dry": 0.26
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "straw fiber",
+        "material2": "aluminum",
+        "static": {
+            "dry": 0.27
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tarred fiber",
+        "material2": "cast iron",
+        "static": {
+            "dry": 0.15
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tarred fiber",
+        "material2": "aluminum",
+        "static": {
+            "dry": 0.18
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polytetrafluoroethylene PTFE, teflon",
+        "material2": "polytetrafluoroethylene PTFE",
+        "static": {
+            "dry": 0.04
+        },
+        "sliding": {
+            "dry": 0.04
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polytetrafluoroethylene PTFE",
+        "material2": "polytetrafluoroethylene PTFE",
+        "static": {
+            "lubricated": 0.04
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polytetrafluoroethylene PTFE",
+        "material2": "steel",
+        "static": {
+            "dry": {
+                "min": 0.05,
+                "max": 0.2
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "polytetrafluoroethylene PTFE",
+        "material2": "snow",
+        "static": {
+            "dry": 0.02,
+            "wet": 0.05
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tungsten carbide",
+        "material2": "steel",
+        "static": {
+            "dry": {
+                "min": 0.4,
+                "max": 0.6
+            },
+            "lubricated": {
+                "min": 0.1,
+                "max": 0.2
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tungsten carbide",
+        "material2": "tungsten carbide",
+        "static": {
+            "dry": {
+                "min": 0.2,
+                "max": 0.25
+            },
+            "lubricated": 0.12
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tungsten carbide",
+        "material2": "copper",
+        "static": {
+            "dry": 0.35
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tungsten carbide",
+        "material2": "iron",
+        "static": {
+            "dry": 0.8
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tin",
+        "material2": "cast iron",
+        "sliding": {
+            "dry": 0.32
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "tire",
+        "material2": "road",
+        "static": {
+            "dry": 1,
+            "wet": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wax, ski 0°C",
+        "material2": "snow",
+        "static": {
+            "dry": 0.04,
+            "wet": 0.1
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wax, ski -10°C",
+        "material2": "snow",
+        "static": {
+            "dry": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wood",
+        "material2": "wood",
+        "static": {
+            "dry": {
+                "min": 0.25,
+                "max": 0.5
+            },
+            "wet": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wood",
+        "material2": "metal",
+        "static": {
+            "dry": {
+                "min": 0.2,
+                "max": 0.6
+            },
+            "wet": 0.2
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wood",
+        "material2": "stone",
+        "static": {
+            "dry": {
+                "min": 0.2,
+                "max": 0.4
+            }
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wood",
+        "material2": "concrete",
+        "static": {
+            "dry": 0.62
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wood",
+        "material2": "brick",
+        "static": {
+            "dry": 0.6
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "wood waxed",
+        "material2": "snow",
+        "static": {
+            "wet": 0.14
+        },
+        "sliding": {
+            "dry": 0.04,
+            "wet": 0.1
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "zinc",
+        "material2": "cast iron",
+        "static": {
+            "dry": 0.85
+        },
+        "sliding": {
+            "dry": 0.21
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "zinc",
+        "material2": "zinc",
+        "static": {
+            "dry": 0.6
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    },
+    {
+        "material1": "zinc",
+        "material2": "zinc",
+        "static": {
+            "lubricated": 0.04
+        },
+        "source": {
+            "name": "The Engineering ToolBox - Friction Coefficients and Calculator",
+            "url": "https://www.engineeringtoolbox.com/friction-coefficients-d_778.html",
+            "date": "2024-03-01"
+        }
+    }]
+}

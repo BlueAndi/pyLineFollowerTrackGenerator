@@ -1,4 +1,4 @@
-"""The main module with the program entry point."""
+"""Command to list friction data."""
 
 # MIT License
 #
@@ -25,21 +25,13 @@
 ################################################################################
 # Imports
 ################################################################################
-import sys
 from pyLineFollowerTrackGenerator.constants import Ret
-from pyLineFollowerTrackGenerator.prg_arg_parser import PrgArgParser
-from pyLineFollowerTrackGenerator.cmd_friction import cmd_friction_register
-from pyLineFollowerTrackGenerator.cmd_simple import cmd_simple_register
+from pyLineFollowerTrackGenerator.friction import Friction
 
 ################################################################################
 # Variables
 ################################################################################
-
-# Register a command here!
-_COMMAND_REG_LIST = [
-    cmd_friction_register,
-    cmd_simple_register
-]
+_CMD_NAME = "friction"
 
 ################################################################################
 # Classes
@@ -49,59 +41,56 @@ _COMMAND_REG_LIST = [
 # Functions
 ################################################################################
 
-def _get_cmd_exec_func(commands, cmd_name):
-    exec_func = None
+# pylint: disable=too-many-locals, too-many-statements
+def _exec(args):
+    """List friction data.
 
-    for cmd in commands:
-        if cmd["name"] == cmd_name:
-            exec_func = cmd["execFunc"]
-            break
-
-    return exec_func
-
-def main():
-    """The program entry point function.
+    Args:
+        args (obj): Program arguments
 
     Returns:
-        int: System exit status
+        Ret: If successful, it will return Ret.OK otherwise a corresponding error.
     """
-    ret_status          = Ret.OK
-    prg_arg_parser      = PrgArgParser()
-    prg_arg_sub_parsers = prg_arg_parser.get_sub_parsers()
-    commands            = []
+    ret_status = Ret.OK
+    friction_db = Friction()
 
-    # Register all command specific argument parsers
-    for cmd_reg_func in _COMMAND_REG_LIST:
-        cmd_par_dict = cmd_reg_func(prg_arg_sub_parsers)
-        commands.append(cmd_par_dict)
-
-    # Parse all program arguments now
-    prg_arg_parser.parse_args()
-
-    # In verbose mode print all program arguments
-    if prg_arg_parser.get_args().verbose is True:
-        print("Program arguments: ")
-        for arg in vars(prg_arg_parser.get_args()):
-            print(f"* {arg} = {vars(prg_arg_parser.get_args())[arg]}")
-        print("\n")
-
-    # If no program arguments are available, the help information shall be shown.
-    if prg_arg_parser.get_args().cmd is None:
-        prg_arg_parser.print_help()
-    else:
-        # Handle command received via program arguments
-        cmd_exec_func = _get_cmd_exec_func(commands, prg_arg_parser.get_args().cmd)
-
-        if cmd_exec_func is None:
-            ret_status = Ret.ERROR_UNKNOWN_COMMAND
+    if friction_db.load() is True:
+        if args.material is None:
+            friction_db.print_all()
         else:
-            ret_status = cmd_exec_func(prg_arg_parser.get_args())
+            friction_db.print_filtered_by_material(args.material)
 
     return ret_status
+
+def cmd_friction_register(arg_sub_parsers):
+    """Register the command specific CLI argument parser and get command
+        specific paramters.
+
+    Args:
+        arg_sub_parsers (obj): Register the parser here
+
+    Returns:
+        obj: Command parameters
+    """
+    cmd_par_dict = {}
+    cmd_par_dict["name"] = _CMD_NAME
+    cmd_par_dict["execFunc"] = _exec
+
+    parser = arg_sub_parsers.add_parser(
+        "friction",
+        help="List friction data."
+    )
+
+    parser.add_argument(
+        "material",
+        metavar="MATERIAL",
+        type=str,
+        nargs="?",
+        help="Show friction data for the material."
+    )
+
+    return cmd_par_dict
 
 ################################################################################
 # Main
 ################################################################################
-
-if __name__ == "__main__":
-    sys.exit(main())

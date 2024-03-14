@@ -27,19 +27,22 @@
 ################################################################################
 import sys
 from datetime import datetime
+from typing import Union
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import splev, splprep
 from pyLineFollowerTrackGenerator.constants import Ret
 from pyLineFollowerTrackGenerator.base.code_format import CodeFormat
 from pyLineFollowerTrackGenerator.base.node import Node
-from pyLineFollowerTrackGenerator.base.fields import SFVec2f, SFNode
+from pyLineFollowerTrackGenerator.base.fields import SFVec2f, SFNode, SFString
 from pyLineFollowerTrackGenerator.base.world_file import WorldFile
 from pyLineFollowerTrackGenerator.base.proto import Proto
 from pyLineFollowerTrackGenerator.nodes.WorldInfo import WorldInfo
 from pyLineFollowerTrackGenerator.nodes.Viewpoint import Viewpoint
 from pyLineFollowerTrackGenerator.nodes.PBRAppearance import PBRAppearance
 from pyLineFollowerTrackGenerator.nodes.ImageTexture import ImageTexture
+from pyLineFollowerTrackGenerator.nodes.ContactProperties import ContactProperties
+from pyLineFollowerTrackGenerator.friction import Friction
 
 ################################################################################
 # Variables
@@ -47,6 +50,8 @@ from pyLineFollowerTrackGenerator.nodes.ImageTexture import ImageTexture
 _CMD_NAME = "simple"
 _START_STOP_LINE_WIDTH = 0.05 # [m]
 _START_STOP_LINE_DISTANCE_TO_MIDDLE = 0.025 # [m]
+_NUM_OF_POINTS_MIN = 8
+_BASIC_TIME_STEP = 8 # [ms]
 
 ################################################################################
 # Classes
@@ -275,7 +280,101 @@ def _get_cmd_line_parameters() -> str:
 
     return cmd_line
 
-# pylint: disable=too-many-locals, too-many-statements
+def _get_world_and_image_file_name(user_world_file_name: str) -> tuple[str, str]:
+    world_file_name = ""
+    image_file_name = ""
+
+    if user_world_file_name.endswith(".wbt") is False:
+        world_file_name = user_world_file_name + ".wbt"
+        image_file_name = user_world_file_name + ".png"
+    else:
+        world_file_name = user_world_file_name
+        image_file_name = user_world_file_name.replace(".wbt", ".png")
+
+    return (world_file_name, image_file_name)
+
+def _create_world_info(title: str, description: str, author: str, author_email: str) -> WorldInfo:
+    world_creation_date = datetime.today().strftime('%Y-%m-%d')
+
+    world_info = WorldInfo()
+    world_info["title"].value = title
+    world_info["info"].values = [
+        description,
+        f"{author} <{author_email}>",
+        world_creation_date,
+        _get_cmd_line_parameters()
+    ]
+    world_info["basicTimeStep"].value = _BASIC_TIME_STEP
+
+    return world_info
+
+def _create_viewpoint(arena_width: float, arena_height: float) -> Viewpoint:
+    viewpoint = Viewpoint()
+    viewpoint["orientation"].values = [0, 1, 0, np.pi / 4]
+    viewpoint["position"].values = [-2 * arena_width, 0, 2 * arena_height]
+
+    return viewpoint
+
+def _create_textured_background() -> Node:
+    return Node("TexturedBackground")
+
+def _create_textured_background_light() -> Node:
+    return Node("TexturedBackgroundLight")
+
+def _create_rectangle_arena(arena_width: float, arena_height: float, image_file_name) -> Node:
+    rectangle_arena = Node("RectangleArena")
+    rectangle_arena.add_fields([
+        SFVec2f("floorSize", [arena_width, arena_height]),
+        SFVec2f("floorTileSize", [arena_width, arena_height]),
+        SFNode("floorAppearance", PBRAppearance())
+    ])
+
+    rectangle_arena["floorAppearance"].value["baseColorMap"].value = ImageTexture()
+    rectangle_arena["floorAppearance"].value["baseColorMap"].value["url"].values = [image_file_name]
+    rectangle_arena["floorAppearance"].value["metalness"].value = 0
+
+    return rectangle_arena
+
+def _create_contact_properties(material_ground: str, material_robot: str, static_friction: Union[None,float], dynamic_friction: Union[None,float]) -> ContactProperties:
+    contact_properties = ContactProperties()
+    contact_properties["material1"].value = material_ground
+    contact_properties["material2"].value = material_robot
+
+    if static_friction is not None:
+        contact_properties["coulombFriction"].values = [static_friction]
+
+    if dynamic_friction is not None:
+        contact_properties["forceDependentSlip"].values = [dynamic_friction]
+
+    return contact_properties
+
+def _add_friction_to_world(world_info, material_ground: str, material_robot: str, material_property: str) -> bool:
+    status = False
+
+    if (material_ground != "default") or (material_robot != "default"):
+        friction_db = Friction()
+
+        if friction_db.load() is True:
+            static_friction, dynamic_friction = friction_db.get_friction(material_ground, material_robot, material_property)
+
+            if static_friction is None:
+                print(f"Static friction for {material_ground} / {material_robot}: -")
+            else:
+                print(f"Static friction for {material_ground} / {material_robot}: {static_friction}")
+
+            if dynamic_friction is None:
+                print(f"Dynamic friction for {material_ground} / {material_robot}: -")
+            else:
+                print(f"Dynamic friction for {material_ground} / {material_robot}: {dynamic_friction}")
+
+            if (static_friction is not None) or (dynamic_friction is not None):
+                contact_properties = _create_contact_properties(material_ground, material_robot, static_friction, dynamic_friction)
+                world_info["contactProperties"].values = [contact_properties]
+                status = True
+
+    return status
+
+# pylint: disable=too-many-locals
 def _exec(args):
     """Generate the Webots world.
 
@@ -290,7 +389,6 @@ def _exec(args):
     world_author        = args.author
     world_email         = args.email
     world_description   = args.desc
-    world_creation_date = datetime.today().strftime('%Y-%m-%d')
     image_width         = args.imageSize # [pixel]
     image_height        = args.imageSize # [pixel]
     image_line_width    = args.imageSize * args.lineWidth // args.size # [pixel]
@@ -298,57 +396,37 @@ def _exec(args):
     arena_height        = args.size # [m]
     num_points          = args.numPoints
     pixel_per_m         = args.imageSize / args.size
-    world_file_name     = ""
-    image_file_name     = ""
-    basic_time_step     = 8
     is_debug_mode       = args.debug
+    material_ground     = args.materialGround
+    material_robot      = args.materialRobot
+    material_property   = args.materialProperty
 
-    if args.worldFileName[0].endswith(".wbt") is False:
-        world_file_name = args.worldFileName[0] + ".wbt"
-        image_file_name = args.worldFileName[0] + ".png"
-    else:
-        world_file_name = args.worldFileName[0]
-        image_file_name = args.worldFileName[0].replace(".wbt", ".png")
+    world_file_name, image_file_name = _get_world_and_image_file_name(args.worldFileName[0])
 
     # Limit lower number of points to enforce that the splines can be drawn
     # within the image along the virtual rectangle.
-    if num_points < 8:
-        num_points = 8
+    if num_points < _NUM_OF_POINTS_MIN:
+        num_points = _NUM_OF_POINTS_MIN
 
         if is_debug_mode is True:
             print(f"Number of points limited to {num_points}.\n")
 
-    world_info = WorldInfo()
-    world_info["title"].value = world_title
-    world_info["info"].values = [
-        world_description,
-        f"{world_author} <{world_email}>",
-        world_creation_date,
-        _get_cmd_line_parameters()
-    ]
-    world_info["basicTimeStep"].value = basic_time_step
-
-    viewpoint = Viewpoint()
-    viewpoint["orientation"].values = [0, 1, 0, np.pi / 4]
-    viewpoint["position"].values = [-2 * arena_width, 0, 2 * arena_width]
+    world_info = _create_world_info(world_title, world_description, world_author, world_email)
+    viewpoint = _create_viewpoint(arena_width, arena_height)
 
     proto_textured_background = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto") # pylint: disable=line-too-long
-    textured_background = Node("TexturedBackground")
+    textured_background = _create_textured_background()
 
     proto_textured_background_light = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto") # pylint: disable=line-too-long
-    textured_background_light = Node("TexturedBackgroundLight")
+    textured_background_light = _create_textured_background_light()
 
     proto_rectangle_arena = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto") # pylint: disable=line-too-long
-    rectangle_arena = Node("RectangleArena")
-    rectangle_arena.add_fields([
-        SFVec2f("floorSize", [arena_width, arena_height]),
-        SFVec2f("floorTileSize", [arena_width, arena_height]),
-        SFNode("floorAppearance", PBRAppearance())
-    ])
+    rectangle_arena = _create_rectangle_arena(arena_width, arena_height, image_file_name)
 
-    rectangle_arena["floorAppearance"].value["baseColorMap"].value = ImageTexture()
-    rectangle_arena["floorAppearance"].value["baseColorMap"].value["url"].values = [image_file_name]
-    rectangle_arena["floorAppearance"].value["metalness"].value = 0
+    if _add_friction_to_world(world_info, material_ground, material_robot, material_property) is True:
+        rectangle_arena.add_fields(
+            SFString("contactMaterial", material_ground)
+        )
 
     world_file = WorldFile([
         proto_textured_background,
@@ -455,6 +533,33 @@ def cmd_simple_register(arg_sub_parsers):
         type=int,
         default=0.015,
         help="The arena line width in [m]. (default: %(default)d)"
+    )
+    parser.add_argument(
+        "-mg",
+        "--materialGround",
+        metavar="MATERIAL_GROUND",
+        required=False,
+        type=str,
+        default="default",
+        help="The ground material used for friction. (default: %(default)d)"
+    )
+    parser.add_argument(
+        "-mr",
+        "--materialRobot",
+        metavar="MATERIAL_ROBOT",
+        required=False,
+        type=str,
+        default="default",
+        help="The robot contact material (tires/track/etc.) used for friction. (default: %(default)d)"
+    )
+    parser.add_argument(
+        "-mp",
+        "--materialProperty",
+        metavar="MATERIAL_PROPERTY",
+        required=False,
+        type=str,
+        default="dry",
+        help="The contact material property e.g. dry, wet, etc. used for friction. (default: %(default)d)"
     )
     parser.add_argument(
         "-np",
