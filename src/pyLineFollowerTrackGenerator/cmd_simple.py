@@ -532,7 +532,7 @@ def cmd_simple_register(arg_sub_parsers):
         required=False,
         type=int,
         default=0.015,
-        help="The arena line width in [m]. (default: %(default)d)"
+        help="The arena line width in [m]. (default: %(default)f)"
     )
     parser.add_argument(
         "-mg",
