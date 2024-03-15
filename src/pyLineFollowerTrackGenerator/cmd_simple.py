@@ -541,7 +541,7 @@ def cmd_simple_register(arg_sub_parsers):
         required=False,
         type=str,
         default="default",
-        help="The ground material used for friction. (default: %(default)d)"
+        help="The ground material used for friction. (default: %(default)s)"
     )
     parser.add_argument(
         "-mr",
@@ -550,7 +550,7 @@ def cmd_simple_register(arg_sub_parsers):
         required=False,
         type=str,
         default="default",
-        help="The robot contact material (tires/track/etc.) used for friction. (default: %(default)d)"
+        help="The robot contact material (tires/track/etc.) used for friction. (default: %(default)s)"
     )
     parser.add_argument(
         "-mp",
@@ -559,7 +559,7 @@ def cmd_simple_register(arg_sub_parsers):
         required=False,
         type=str,
         default="dry",
-        help="The contact material property e.g. dry, wet, etc. used for friction. (default: %(default)d)"
+        help="The contact material property e.g. dry, wet, etc. used for friction. (default: %(default)s)"
     )
     parser.add_argument(
         "-np",
