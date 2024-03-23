@@ -62,7 +62,7 @@ def _exec(args):
 
     return ret_status
 
-def cmd_friction_register(arg_sub_parsers):
+def cmd_register(arg_sub_parsers):
     """Register the command specific CLI argument parser and get command
         specific paramters.
 
@@ -77,7 +77,7 @@ def cmd_friction_register(arg_sub_parsers):
     cmd_par_dict["execFunc"] = _exec
 
     parser = arg_sub_parsers.add_parser(
-        "friction",
+        _CMD_NAME,
         help="List friction data."
     )
 

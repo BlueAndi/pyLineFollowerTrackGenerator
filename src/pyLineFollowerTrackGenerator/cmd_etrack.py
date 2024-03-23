@@ -1,4 +1,4 @@
-"""Command to generate a Webots world with a simple line follower track in a square arena."""
+"""Command to generate a Webots world with a line follower track like a E in a square arena."""
 
 # MIT License
 #
@@ -42,8 +42,8 @@ from pyLineFollowerTrackGenerator.util import (
 ################################################################################
 # Variables
 ################################################################################
-_CMD_NAME = "simple"
-_NUM_OF_POINTS_MIN = 8
+_CMD_NAME = "etrack"
+_NUM_OF_POINTS_MIN = 14
 _BASIC_TIME_STEP = 8 # [ms]
 
 ################################################################################
@@ -55,8 +55,8 @@ _BASIC_TIME_STEP = 8 # [ms]
 ################################################################################
 
 # pylint: disable=too-many-locals, line-too-long
-def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> list[list[int, int]]:
-    """Generate a number of points along a virtual rectangle with the given
+def _generate_points_along_e(num_points, rect_width, rect_height) -> list[list[int, int]]:
+    """Generate a number of points along a virtual E inside a rectangle with the given
         width/height.
 
     Args:
@@ -65,23 +65,43 @@ def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> lis
         rect_height (int): Virtual rectangle height in pixels.
 
     Returns:
-        list[list[int, int]]: List of point coordinates (x, y)
+        list[list[int, int]]: Point coordinates (x, y)
     """
-    num_points_on_x_axis = num_points * rect_width // (2 * (rect_width + rect_height))
-    num_points_on_y_axis = num_points * rect_height // (2 * (rect_width + rect_height))
+
+    #        4
+    #   *---------*
+    #   |    2    |
+    #   |  *------*
+    #   |  | 2
+    #   |  *------*
+    # 4 |    2    |
+    #   |  *------*
+    #   |  | 2
+    #   |  *------*
+    #   |    4    |
+    #   *---------*
+    #
+    # -----------------------> x
+    #
+    num_points_on_short_side = num_points // 7
+    num_points_on_long_side = 2 * num_points_on_short_side
     tolerance = 10 # [%]
     width = rect_width * (100 - 2 * tolerance) // 100
     height = rect_height * (100 - 2 * tolerance) // 100
     x_tolerance = width * tolerance // 100
     y_tolerance = height * tolerance // 100
-    distance_x = width // num_points_on_x_axis
-    distance_y = height // num_points_on_y_axis
+    long_ratio = 1
+    short_ratio = 2/3
+    distance_long_x = int(long_ratio * width / num_points_on_long_side)
+    distance_long_y = int(long_ratio * height / num_points_on_long_side)
+    distance_short_x = int(short_ratio * width / num_points_on_short_side)
+    distance_finger = height // 5
     points = []
 
     # Walk along x-axis in positive direction
     y_base = 0
-    for idx in range(num_points_on_x_axis):
-        x = idx * distance_x
+    for idx in range(num_points_on_long_side):
+        x = idx * distance_long_x
         y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
 
         x += x_tolerance
@@ -89,11 +109,24 @@ def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> lis
 
         points.append([x, y])
 
-    # Walk along y-axis in positive direction
+    # Walk along x-axis in negative direction
     x_base = width - 1
-    for idx in range(num_points_on_y_axis):
-        x = np.random.uniform(x_base - x_tolerance / 2, x_base + x_tolerance)
-        y = idx * distance_y
+    y_base = (1 * distance_finger) - 1
+    for idx in range(num_points_on_short_side):
+        x = x_base - idx * distance_short_x
+        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+
+        x += x_tolerance
+        y += y_tolerance
+
+        points.append([x, y])
+
+    # Walk along x-axis in positive direction
+    x_base = (1 - short_ratio) * width - 1
+    y_base = (2 * distance_finger) - 1
+    for idx in range(num_points_on_short_side):
+        x = x_base + idx * distance_short_x
+        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
 
         x += x_tolerance
         y += y_tolerance
@@ -101,9 +134,34 @@ def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> lis
         points.append([x, y])
 
     # Walk along x-axis in negative direction
-    y_base = height - 1
-    for idx in range(num_points_on_x_axis):
-        x = x_base - idx * distance_x
+    x_base = width - 1
+    y_base = (3 * distance_finger) - 1
+    for idx in range(num_points_on_short_side):
+        x = x_base - idx * distance_short_x
+        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+
+        x += x_tolerance
+        y += y_tolerance
+
+        points.append([x, y])
+
+    # Walk along x-axis in positive direction
+    x_base = (1 - short_ratio) * width - 1
+    y_base = (4 * distance_finger) - 1
+    for idx in range(num_points_on_short_side):
+        x = x_base + idx * distance_short_x
+        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+
+        x += x_tolerance
+        y += y_tolerance
+
+        points.append([x, y])
+
+    # Walk along x-axis in negative direction
+    x_base = width - 1
+    y_base = (5 * distance_finger) - 1
+    for idx in range(num_points_on_long_side):
+        x = x_base - idx * distance_long_x
         y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
 
         x += x_tolerance
@@ -113,9 +171,9 @@ def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> lis
 
     # Walk along y-axis in negative direction
     x_base = 0
-    for idx in range(num_points_on_y_axis):
+    for idx in range(num_points_on_long_side):
         x = np.random.uniform(x_base - x_tolerance / 2, x_base + x_tolerance)
-        y = y_base - idx * distance_y
+        y = y_base - idx * distance_long_y
 
         x += x_tolerance
         y += y_tolerance
@@ -190,7 +248,7 @@ def _exec(args):
         rectangle_arena
     ])
 
-    points = _generate_points_along_rectangle(num_points, image_width, image_height)
+    points = _generate_points_along_e(num_points, image_width, image_height)
 
     fig = generate_track_image( points,
                                 image_width,
@@ -319,7 +377,7 @@ def cmd_register(arg_sub_parsers):
         metavar="NUM_POINTS",
         required=False,
         type=int,
-        default=20,
+        default=2 * _NUM_OF_POINTS_MIN,
         help="The total number of points used to generate the arena. (default: %(default)d)"
     )
     parser.add_argument(
@@ -328,7 +386,7 @@ def cmd_register(arg_sub_parsers):
         metavar="SIZE",
         required=False,
         type=int,
-        default=1,
+        default=2,
         help="The arena width/length in [m]. (default: %(default)d)"
     )
     parser.add_argument(

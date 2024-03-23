@@ -28,8 +28,9 @@
 import sys
 from pyLineFollowerTrackGenerator.constants import Ret
 from pyLineFollowerTrackGenerator.prg_arg_parser import PrgArgParser
-from pyLineFollowerTrackGenerator.cmd_friction import cmd_friction_register
-from pyLineFollowerTrackGenerator.cmd_simple import cmd_simple_register
+from pyLineFollowerTrackGenerator.cmd_friction import cmd_register as cmd_friction_register
+from pyLineFollowerTrackGenerator.cmd_etrack import cmd_register as cmd_etrack_register
+from pyLineFollowerTrackGenerator.cmd_simple import cmd_register as cmd_simple_register
 
 ################################################################################
 # Variables
@@ -38,6 +39,7 @@ from pyLineFollowerTrackGenerator.cmd_simple import cmd_simple_register
 # Register a command here!
 _COMMAND_REG_LIST = [
     cmd_friction_register,
+    cmd_etrack_register,
     cmd_simple_register
 ]
 
