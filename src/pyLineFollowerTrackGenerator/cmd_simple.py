@@ -39,6 +39,8 @@ from pyLineFollowerTrackGenerator.util import (
     add_friction_to_world, generate_track_image
 )
 
+# pylint: disable=R0801
+
 ################################################################################
 # Variables
 ################################################################################
