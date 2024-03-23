@@ -7,6 +7,7 @@ A CLI tool to generate a Webots world with a random line follower track.
 
 * [Installation](#installation)
 * [Usage](#usage)
+  * [Track: ETrack](#track-etrack)
   * [Track: Simple](#track-simple)
   * [Track: \<...\>](#track-)
   * [Friction](#friction)
@@ -23,6 +24,20 @@ $ pip install .
 ```
 
 # Usage
+
+## Track: ETrack
+Generate a line follower track like a 'E' with the "etrack" command.
+
+Use ```./pyLineFollowerTrackGenerator etrack --help``` to see all possible parameters.
+
+Example: A arena 2 x 2 m generated with splines through 30 points. The line width is 1.5 cm by default.
+```bash
+$ ./pyLineFollowerTrackGenerator Parameters: etrack -a "Andreas Merkle" -d "Line follower track along a 'E'." -e web@blue-andi.de -mg cardboard -mr rubber -mp dry etrack
+```
+![example_etrack](./doc/examples/etrack/example_etrack.png)
+Files:
+* [etrack.wbt](./doc/examples/etrack/etrack.wbt)
+* [etrack.png](./doc/examples/etrack/etrack.png)
 
 ## Track: Simple
 Generate a simple line follower track with the "simple" command.
