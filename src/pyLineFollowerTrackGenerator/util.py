@@ -131,7 +131,7 @@ def generate_start_stop_line(tck, u, distance_from_middle, length) -> tuple[list
     return x_perpendicular_low, y_perpendicular_low, x_perpendicular_high, y_perpendicular_high
 
 # pylint: disable=too-many-arguments, line-too-long, too-many-locals
-def generate_track_image(points, image_width, image_height, image_line_width, pixel_per_m, is_debug_mode) -> plt.Figure:
+def generate_track_image(points, image_width, image_height, image_line_width, pixel_per_m, start_stop_line_location, is_debug_mode) -> plt.Figure:
     """Generate the image with the line follower track.
 
     Args:
@@ -140,6 +140,7 @@ def generate_track_image(points, image_width, image_height, image_line_width, pi
         image_height (int): Image height in pixels.
         image_line_width (int): The line follower line width in pixels.
         pixel_per_m (float): Conversion factor pixel per m.
+        start_stop_line_location (float): Location in % considering the whole track.
         is_debug_mode (bool): In debug mode the image will get additional information.
 
     Returns:
@@ -149,9 +150,6 @@ def generate_track_image(points, image_width, image_height, image_line_width, pi
     line_points_color = "red"
     start_stop_line_color = line_color
     background_color = "white"
-
-    # 12.5 % after the first point, means in the middle of the lower rectangle part.
-    start_stop_line_location = 0.125
 
     # In debug mode show the start-/stop-line in different color.
     if is_debug_mode is True:

@@ -43,7 +43,7 @@ from pyLineFollowerTrackGenerator.util import (
 # Variables
 ################################################################################
 _CMD_NAME = "etrack"
-_NUM_OF_POINTS_MIN = 14
+_NUM_OF_POINTS_MIN = 30
 _BASIC_TIME_STEP = 8 # [ms]
 
 ################################################################################
@@ -54,7 +54,45 @@ _BASIC_TIME_STEP = 8 # [ms]
 # Functions
 ################################################################################
 
-# pylint: disable=too-many-locals, line-too-long
+# pylint: disable=line-too-long, too-many-arguments
+def _generate_points_along_x(num_points, distance, x_base, x_tolerance, y_base, y_tolerance, positive) -> list[list[int, int]]:
+    points = []
+
+    for idx in range(num_points):
+        if positive is False:
+            x = x_base - idx * distance
+        else:
+            x = x_base + idx * distance
+
+        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+
+        x += x_tolerance
+        y += y_tolerance
+
+        points.append([x, y])
+
+    return points
+
+# pylint: disable=line-too-long, too-many-arguments
+def _generate_points_along_y(num_points, distance, x_base, x_tolerance, y_base, y_tolerance, positive) -> list[list[int, int]]:
+    points = []
+
+    for idx in range(num_points):
+        x = np.random.uniform(x_base - x_tolerance / 2, x_base + x_tolerance)
+
+        if positive is False:
+            y = y_base - idx * distance
+        else:
+            y = y_base + idx * distance
+
+        x += x_tolerance
+        y += y_tolerance
+
+        points.append([x, y])
+
+    return points
+
+# pylint: disable=line-too-long, too-many-statements, too-many-locals
 def _generate_points_along_e(num_points, rect_width, rect_height) -> list[list[int, int]]:
     """Generate a number of points along a virtual E inside a rectangle with the given
         width/height.
@@ -68,117 +106,100 @@ def _generate_points_along_e(num_points, rect_width, rect_height) -> list[list[i
         list[list[int, int]]: Point coordinates (x, y)
     """
 
-    #        4
+    #        long
     #   *---------*
-    #   |    2    |
+    #   |    short| small
     #   |  *------*
-    #   |  | 2
+    # l |  | short  small
+    # o |  *------*
+    # n |    short| small
+    # g |  *------*
+    #   |  | short  small
     #   |  *------*
-    # 4 |    2    |
-    #   |  *------*
-    #   |  | 2
-    #   |  *------*
-    #   |    4    |
+    #   |    long | small
     #   *---------*
     #
     # -----------------------> x
     #
-    num_points_on_short_side = num_points // 7
-    num_points_on_long_side = 2 * num_points_on_short_side
+    ratio_long_side = 1
+    ratio_short_side = 2/3 * ratio_long_side
+    ratio_small_side = 1/5 * ratio_long_side
+    num_long_sides = 3
+    num_short_sides = 4
+    num_small_sides = 5
+    num_points_long_side = int(ratio_long_side * num_points / (num_long_sides * ratio_long_side + num_short_sides * ratio_short_side + num_small_sides * ratio_small_side))
+    num_points_short_side = int(num_points_long_side * ratio_short_side)
+    num_points_small_side = int(num_points_long_side * ratio_small_side)
     tolerance = 10 # [%]
     width = rect_width * (100 - 2 * tolerance) // 100
     height = rect_height * (100 - 2 * tolerance) // 100
     x_tolerance = width * tolerance // 100
     y_tolerance = height * tolerance // 100
-    long_ratio = 1
-    short_ratio = 2/3
-    distance_long_x = int(long_ratio * width / num_points_on_long_side)
-    distance_long_y = int(long_ratio * height / num_points_on_long_side)
-    distance_short_x = int(short_ratio * width / num_points_on_short_side)
-    distance_finger = height // 5
+    distance_long_x = int(ratio_long_side * width / num_points_long_side)
+    distance_long_y = int(ratio_long_side * height / num_points_long_side)
+    distance_short_x = int(ratio_short_side * width / num_points_short_side)
+    distance_small_y = int(ratio_small_side * height / num_points_small_side)
     points = []
 
     # Walk along x-axis in positive direction
+    x_base = 0
     y_base = 0
-    for idx in range(num_points_on_long_side):
-        x = idx * distance_long_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+    points += _generate_points_along_x(num_points_long_side, distance_long_x, x_base, x_tolerance, y_base, y_tolerance, True)
 
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    # Walk along y-axis in positive direction
+    x_base = width - 1
+    y_base = 0
+    points += _generate_points_along_y(num_points_small_side, distance_small_y, x_base, x_tolerance, y_base, y_tolerance, True)
 
     # Walk along x-axis in negative direction
     x_base = width - 1
-    y_base = (1 * distance_finger) - 1
-    for idx in range(num_points_on_short_side):
-        x = x_base - idx * distance_short_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+    y_base = (1 * distance_small_y) - 1
+    points += _generate_points_along_x(num_points_short_side, distance_short_x, x_base, x_tolerance, y_base, y_tolerance, False)
 
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    # Walk along y-axis in positive direction
+    x_base = int((1 - ratio_short_side) * width - 1)
+    y_base = (1 * distance_small_y) - 1
+    points += _generate_points_along_y(num_points_small_side, distance_small_y, x_base, x_tolerance, y_base, y_tolerance, True)
 
     # Walk along x-axis in positive direction
-    x_base = (1 - short_ratio) * width - 1
-    y_base = (2 * distance_finger) - 1
-    for idx in range(num_points_on_short_side):
-        x = x_base + idx * distance_short_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+    x_base = int((1 - ratio_short_side) * width - 1)
+    y_base = (2 * distance_small_y) - 1
+    points += _generate_points_along_x(num_points_short_side, distance_short_x, x_base, x_tolerance, y_base, y_tolerance, True)
 
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    # Walk along y-axis in positive direction
+    x_base = width - 1
+    y_base = (2 * distance_small_y) - 1
+    points += _generate_points_along_y(num_points_small_side, distance_small_y, x_base, x_tolerance, y_base, y_tolerance, True)
 
     # Walk along x-axis in negative direction
     x_base = width - 1
-    y_base = (3 * distance_finger) - 1
-    for idx in range(num_points_on_short_side):
-        x = x_base - idx * distance_short_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+    y_base = (3 * distance_small_y) - 1
+    points += _generate_points_along_x(num_points_short_side, distance_short_x, x_base, x_tolerance, y_base, y_tolerance, False)
 
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    # Walk along y-axis in positive direction
+    x_base = int((1 - ratio_short_side) * width - 1)
+    y_base = (3 * distance_small_y) - 1
+    points += _generate_points_along_y(num_points_small_side, distance_small_y, x_base, x_tolerance, y_base, y_tolerance, True)
 
     # Walk along x-axis in positive direction
-    x_base = (1 - short_ratio) * width - 1
-    y_base = (4 * distance_finger) - 1
-    for idx in range(num_points_on_short_side):
-        x = x_base + idx * distance_short_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+    x_base = int((1 - ratio_short_side) * width - 1)
+    y_base = (4 * distance_small_y) - 1
+    points += _generate_points_along_x(num_points_short_side, distance_short_x, x_base, x_tolerance, y_base, y_tolerance, True)
 
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    # Walk along y-axis in positive direction
+    x_base = width - 1
+    y_base = (4 * distance_small_y) - 1
+    points += _generate_points_along_y(num_points_small_side, distance_small_y, x_base, x_tolerance, y_base, y_tolerance, True)
 
     # Walk along x-axis in negative direction
     x_base = width - 1
-    y_base = (5 * distance_finger) - 1
-    for idx in range(num_points_on_long_side):
-        x = x_base - idx * distance_long_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
-
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    y_base = (5 * distance_small_y) - 1
+    points += _generate_points_along_x(num_points_long_side, distance_long_x, x_base, x_tolerance, y_base, y_tolerance, False)
 
     # Walk along y-axis in negative direction
     x_base = 0
-    for idx in range(num_points_on_long_side):
-        x = np.random.uniform(x_base - x_tolerance / 2, x_base + x_tolerance)
-        y = y_base - idx * distance_long_y
-
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    y_base = (5 * distance_small_y) - 1
+    points += _generate_points_along_y(num_points_long_side, distance_long_y, x_base, x_tolerance, y_base, y_tolerance, False)
 
     return points
 
@@ -250,11 +271,15 @@ def _exec(args):
 
     points = _generate_points_along_e(num_points, image_width, image_height)
 
+    # 5 % after the first point
+    start_stop_line_location = 0.05
+
     fig = generate_track_image( points,
                                 image_width,
                                 image_height,
                                 image_line_width,
                                 pixel_per_m,
+                                start_stop_line_location,
                                 is_debug_mode)
 
     if is_debug_mode is True:

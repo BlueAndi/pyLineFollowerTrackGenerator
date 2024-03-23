@@ -54,6 +54,44 @@ _BASIC_TIME_STEP = 8 # [ms]
 # Functions
 ################################################################################
 
+# pylint: disable=line-too-long, too-many-arguments
+def _generate_points_along_x(num_points, distance, x_base, x_tolerance, y_base, y_tolerance, positive) -> list[list[int, int]]:
+    points = []
+
+    for idx in range(num_points):
+        if positive is False:
+            x = x_base - idx * distance
+        else:
+            x = x_base + idx * distance
+
+        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
+
+        x += x_tolerance
+        y += y_tolerance
+
+        points.append([x, y])
+
+    return points
+
+# pylint: disable=line-too-long, too-many-arguments
+def _generate_points_along_y(num_points, distance, x_base, x_tolerance, y_base, y_tolerance, positive) -> list[list[int, int]]:
+    points = []
+
+    for idx in range(num_points):
+        x = np.random.uniform(x_base - x_tolerance / 2, x_base + x_tolerance)
+
+        if positive is False:
+            y = y_base - idx * distance
+        else:
+            y = y_base + idx * distance
+
+        x += x_tolerance
+        y += y_tolerance
+
+        points.append([x, y])
+
+    return points
+
 # pylint: disable=too-many-locals, line-too-long
 def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> list[list[int, int]]:
     """Generate a number of points along a virtual rectangle with the given
@@ -76,53 +114,38 @@ def _generate_points_along_rectangle(num_points, rect_width, rect_height) -> lis
     y_tolerance = height * tolerance // 100
     distance_x = width // num_points_on_x_axis
     distance_y = height // num_points_on_y_axis
-    points = []
+
+    #
+    #   *------*
+    #   |      |
+    #   |      |
+    #   |      |
+    #   *------*
+    #
+    # -----------------------> x
+    #
 
     # Walk along x-axis in positive direction
+    x_base = 0
     y_base = 0
-    for idx in range(num_points_on_x_axis):
-        x = idx * distance_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
-
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    points1 = _generate_points_along_x(num_points_on_x_axis, distance_x, x_base, x_tolerance, y_base, y_tolerance, True)
 
     # Walk along y-axis in positive direction
     x_base = width - 1
-    for idx in range(num_points_on_y_axis):
-        x = np.random.uniform(x_base - x_tolerance / 2, x_base + x_tolerance)
-        y = idx * distance_y
-
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    y_base = 0
+    points2 = _generate_points_along_y(num_points_on_y_axis, distance_y, x_base, x_tolerance, y_base, y_tolerance, True)
 
     # Walk along x-axis in negative direction
+    x_base = width - 1
     y_base = height - 1
-    for idx in range(num_points_on_x_axis):
-        x = x_base - idx * distance_x
-        y = np.random.uniform(y_base - y_tolerance / 2, y_base + y_tolerance)
-
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
+    points3 = _generate_points_along_x(num_points_on_x_axis, distance_x, x_base, x_tolerance, y_base, y_tolerance, False)
 
     # Walk along y-axis in negative direction
     x_base = 0
-    for idx in range(num_points_on_y_axis):
-        x = np.random.uniform(x_base - x_tolerance / 2, x_base + x_tolerance)
-        y = y_base - idx * distance_y
+    y_base = height - 1
+    points4 = _generate_points_along_y(num_points_on_y_axis, distance_y, x_base, x_tolerance, y_base, y_tolerance, False)
 
-        x += x_tolerance
-        y += y_tolerance
-
-        points.append([x, y])
-
-    return points
+    return points1 + points2 + points3 + points4
 
 # pylint: disable=too-many-locals
 def _exec(args):
@@ -192,11 +215,15 @@ def _exec(args):
 
     points = _generate_points_along_rectangle(num_points, image_width, image_height)
 
+    # 12.5 % after the first point, means in the middle of the lower rectangle part.
+    start_stop_line_location = 0.125
+
     fig = generate_track_image( points,
                                 image_width,
                                 image_height,
                                 image_line_width,
                                 pixel_per_m,
+                                start_stop_line_location,
                                 is_debug_mode)
 
     if is_debug_mode is True:
