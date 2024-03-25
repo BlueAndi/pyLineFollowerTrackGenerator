@@ -65,7 +65,7 @@ RectangleArena {
     }
 
     transparency 0
-    roughness 0
+    roughness 1
     roughnessMap NULL
     metalness 0
     metalnessMap NULL

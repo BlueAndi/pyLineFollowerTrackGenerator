@@ -316,6 +316,7 @@ def create_rectangle_arena(arena_width: float, arena_length: float, image_file_n
     rectangle_arena["floorAppearance"].value["baseColorMap"].value = ImageTexture()
     rectangle_arena["floorAppearance"].value["baseColorMap"].value["url"].values = [image_file_name]
     rectangle_arena["floorAppearance"].value["metalness"].value = 0
+    rectangle_arena["floorAppearance"].value["roughness"].value = 1
 
     return rectangle_arena
 
