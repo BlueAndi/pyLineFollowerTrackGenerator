@@ -8,6 +8,7 @@ A CLI tool to generate a Webots world with a random line follower track.
 * [Installation](#installation)
 * [Usage](#usage)
   * [Track: ETrack](#track-etrack)
+  * [Track: Grid](#track-grid)
   * [Track: Simple](#track-simple)
   * [Track: \<...\>](#track-)
   * [Friction](#friction)
@@ -38,6 +39,21 @@ $ ./pyLineFollowerTrackGenerator Parameters: etrack -a "Andreas Merkle" -d "Line
 Files:
 * [etrack.wbt](./doc/examples/etrack/etrack.wbt)
 * [etrack.png](./doc/examples/etrack/etrack.png)
+
+## Track: Grid
+Geneate a line follower track in a fixed grid by coordinates in a JSON file.
+
+Use ```./pyLineFollowerTrackGenerator grid --help``` to see all possible parameters.
+
+Example: A arena 4 x 4 m generated with quarter circles. The line width is 1.5 cm by default.
+```bash
+$ .pyLineFollowerTrackGenerator grid -a "Andreas Merkle" -d "Line follower grid track." -e web@blue-andi.de -mg cardboard -mr rubber -mp dry -s 4 grid.wbt grid_points.json
+```
+![example_grid](./doc/examples/grid/example_grid.png)
+Files:
+* [grid_points.json](./doc/examples/grid/grid_points.json)
+* [grid.wbt](./doc/examples/grid/grid.wbt)
+* [grid.png](./doc/examples/grid/grid.png)
 
 ## Track: Simple
 Generate a simple line follower track with the "simple" command.

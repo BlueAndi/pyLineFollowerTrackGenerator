@@ -1,0 +1,101 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+  title "my world"
+  info [ "Line follower grid track.", "Andreas Merkle <web@blue-andi.de>", "2024-04-02", "Parameters: grid -a Andreas Merkle -d Line follower grid track. -e web@blue-andi.de -mg cardboard -mr rubber -mp dry -s 3 grid.wbt grid_points.json" ]
+  window "<none>"
+  gravity 9.81
+  CFM 1e-05
+  ERP 0.2
+  physics "<none>"
+  basicTimeStep 8
+  FPS 60
+  optimalThreadCount 1
+  physicsDisableTime 1
+  physicsDisableLinearThreshold 0.01
+  physicsDisableAngularThreshold 0.01
+  defaultDamping NULL
+  inkEvaporation 0
+  coordinateSystem "ENU"
+  gpsCoordinateSystem "local"
+  gpsReference 0 0 0
+  lineScale 0.1
+  dragForceScale 30.0
+  dragTorqueScale 5.0
+  randomSeed 0
+  contactProperties [ ContactProperties {
+    material1 "cardboard"
+    material2 "rubber"
+    coulombFriction [ 0.7462734870965546 ]
+    frictionRotation 0 0
+    rollingFriction 0 0 0
+    bounce 0.5
+    bounceVelocity 0.01
+    forceDependentSlip [ 0 ]
+    softERP 0.2
+    softCFM 0.001
+    bumpSound "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/bump.wav"
+    rollSound "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/roll.wav"
+    slideSound "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/slide.wav"
+    maxContactJoints 10
+  }
+ ]
+}
+
+Viewpoint {
+  fieldOfView 0.785398
+  orientation 0 1 0 0.7853981633974483
+  position -6 0 6
+  description ""
+  near 0.05
+  far 0.0
+  exposure 1.0
+  follow ""
+  followType "Tracking Shot"
+  followSmoothness 0.5
+  lensFlare NULL
+  ambientOcclusionRadius 2
+  bloomThreshold 21
+}
+
+TexturedBackground {
+}
+
+TexturedBackgroundLight {
+}
+
+RectangleArena {
+  floorSize 3 3
+  floorTileSize 3 3
+  floorAppearance PBRAppearance {
+    baseColor 1 1 1
+    baseColorMap ImageTexture {
+      url [ "grid.png" ]
+      repeatS TRUE
+      repeatT TRUE
+      filtering 4
+    }
+
+    transparency 0
+    roughness 1
+    roughnessMap NULL
+    metalness 0
+    metalnessMap NULL
+    IBLStrength 1
+    normalMap NULL
+    normalMapFactor 1
+    occlusionMap NULL
+    occlusionMapStrength 1
+    emissiveColor 0 0 0
+    emissiveColorMap NULL
+    emissiveIntensity 1
+    textureTransform NULL
+    name "PBRAppearance"
+  }
+
+  contactMaterial "cardboard"
+}
