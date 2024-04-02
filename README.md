@@ -45,9 +45,9 @@ Geneate a line follower track in a fixed grid by coordinates in a JSON file.
 
 Use ```./pyLineFollowerTrackGenerator grid --help``` to see all possible parameters.
 
-Example: A arena 4 x 4 m generated with quarter circles. The line width is 1.5 cm by default.
+Example: A arena 3 x 3 m generated with quarter circles. The line width is 1.5 cm by default.
 ```bash
-$ .pyLineFollowerTrackGenerator grid -a "Andreas Merkle" -d "Line follower grid track." -e web@blue-andi.de -mg cardboard -mr rubber -mp dry -s 4 grid.wbt grid_points.json
+$ .pyLineFollowerTrackGenerator grid -a "Andreas Merkle" -d "Line follower grid track." -e web@blue-andi.de -mg cardboard -mr rubber -mp dry -s 3 grid.wbt grid_points.json
 ```
 ![example_grid](./doc/examples/grid/example_grid.png)
 Files:
