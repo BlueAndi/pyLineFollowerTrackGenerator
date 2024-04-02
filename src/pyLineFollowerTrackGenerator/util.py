@@ -27,7 +27,7 @@
 ################################################################################
 import sys
 from datetime import datetime
-from typing import Union
+from typing import Union, Any
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import splev, splprep
@@ -53,6 +53,22 @@ _START_STOP_LINE_DISTANCE_TO_MIDDLE = 0.025 # [m]
 ################################################################################
 # Functions
 ################################################################################
+
+def get_start_stop_line_width() -> float:
+    """Get the start-/stop-line width in m.
+
+    Returns:
+        float: Width in m
+    """
+    return _START_STOP_LINE_WIDTH
+
+def get_start_stop_line_distance_to_middle() -> float:
+    """Get start-/stop-line distance to line middle in m.
+
+    Returns:
+        float: Distance in m
+    """
+    return _START_STOP_LINE_DISTANCE_TO_MIDDLE
 
 def generate_spline(points: list[tuple[float, float]]):
     """Generate splines through list of points.
@@ -84,13 +100,13 @@ def generate_spline(points: list[tuple[float, float]]):
     return x_spline, y_spline, tck
 
 # pylint: disable=line-too-long
-def generate_start_stop_line(tck, u, distance_from_middle, length) -> tuple[list[float], list[float], list[float], list[float]]:
+def generate_start_stop_line(tck: Any, u: float, distance_from_middle: int, length: int) -> tuple[list[float], list[float], list[float], list[float]]:
     """Generate points for a start-/stop-line. The start-/stop-line
         start at the given distance from the line middle on both
         sides and has a dediacted length.
 
     Args:
-        tck (tuple(t,c,k)): Vector of knots, the B-spline coefficients, and the degree of the spline.
+        tck (tuple[t,c,k]): Vector of knots, the B-spline coefficients, and the degree of the spline.
         u (float): Location on the virtual rectangle spline [0..1]
         distance_from_middle (int): Distance from the line middle in pixels.
         length (int): Length in pixels of one part of the start-/stop-line.
@@ -131,7 +147,7 @@ def generate_start_stop_line(tck, u, distance_from_middle, length) -> tuple[list
     return x_perpendicular_low, y_perpendicular_low, x_perpendicular_high, y_perpendicular_high
 
 # pylint: disable=too-many-arguments, line-too-long, too-many-locals
-def generate_track_image(points, image_width, image_height, image_line_width, pixel_per_m, start_stop_line_location, is_debug_mode) -> plt.Figure:
+def generate_track_image(points: list[tuple[float, float]], image_width: int, image_height: int, image_line_width: int, pixel_per_m: float, start_stop_line_location: float, is_debug_mode: bool) -> plt.Figure:
     """Generate the image with the line follower track.
 
     Args:
