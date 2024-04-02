@@ -170,7 +170,7 @@ def _exec(args):
     arena_width         = args.size # [m]
     arena_height        = args.size # [m]
     num_points          = args.numPoints
-    pixel_per_m         = args.imageSize / args.size
+    pixel_per_m         = args.imageSize / args.size # [pixel/m]
     is_debug_mode       = args.debug
     material_ground     = args.materialGround
     material_robot      = args.materialRobot
