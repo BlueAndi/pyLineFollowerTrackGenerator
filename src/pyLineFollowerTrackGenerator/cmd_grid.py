@@ -491,7 +491,7 @@ def cmd_register(arg_sub_parsers):
         "--pointDistance",
         metavar="POINT_DISTANCE",
         required=False,
-        type=int,
+        type=float,
         default=0.1,
         help="The point distance in the grid in [m]. (default: %(default)f)"
     )
@@ -509,7 +509,7 @@ def cmd_register(arg_sub_parsers):
         "--lineWidth",
         metavar="LINE_WIDTH",
         required=False,
-        type=int,
+        type=float,
         default=0.015,
         help="The arena line width in [m]. (default: %(default)f)"
     )

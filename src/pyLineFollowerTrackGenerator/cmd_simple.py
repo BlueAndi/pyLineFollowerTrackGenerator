@@ -311,7 +311,7 @@ def cmd_register(arg_sub_parsers):
         "--lineWidth",
         metavar="LINE_WIDTH",
         required=False,
-        type=int,
+        type=float,
         default=0.015,
         help="The arena line width in [m]. (default: %(default)f)"
     )
