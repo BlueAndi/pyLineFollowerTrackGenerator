@@ -5,7 +5,7 @@
 import urllib.request
 import re
 
-WEBOTS_VERSION = "R2023b"
+WEBOTS_VERSION = "R2025a"
 WEBOTS_DOCS_REFERENCE_URL = "https://raw.githubusercontent.com/cyberbotics/webots/master/docs/reference" # pylint: disable=line-too-long
 
 def get_file_from_url(url: str) -> str:

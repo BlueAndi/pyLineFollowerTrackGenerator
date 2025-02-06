@@ -1,12 +1,12 @@
-#VRML_SIM R2023b utf8
+#VRML_SIM R2025a utf8
 
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
 
 WorldInfo {
   title "my world"
-  info [ "Line follower grid track.", "Andreas Merkle <web@blue-andi.de>", "2024-04-02", "Parameters: grid -a Andreas Merkle -d Line follower grid track. -e web@blue-andi.de -mg cardboard -mr rubber -mp dry -s 3 grid.wbt grid_points.json" ]
+  info [ "Line follower grid track.", "Andreas Merkle <web@blue-andi.de>", "2025-02-06", "Parameters: grid -a Andreas Merkle -d Line follower grid track. -e web@blue-andi.de -mg cardboard -mr rubber -mp dry -s 3 examples/grid/grid.wbt examples/grid/grid_points.json" ]
   window "<none>"
   gravity 9.81
   CFM 1e-05
@@ -30,7 +30,7 @@ WorldInfo {
   contactProperties [ ContactProperties {
     material1 "cardboard"
     material2 "rubber"
-    coulombFriction [ 0.7462734870965546 ]
+    coulombFriction [ 0.6699351427316589 ]
     frictionRotation 0 0
     rollingFriction 0 0 0
     bounce 0.5
@@ -38,9 +38,9 @@ WorldInfo {
     forceDependentSlip [ 0 ]
     softERP 0.2
     softCFM 0.001
-    bumpSound "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/bump.wav"
-    rollSound "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/roll.wav"
-    slideSound "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/slide.wav"
+    bumpSound "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/worlds/sounds/bump.wav"
+    rollSound "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/worlds/sounds/roll.wav"
+    slideSound "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/worlds/sounds/slide.wav"
     maxContactJoints 10
   }
  ]
@@ -74,7 +74,7 @@ RectangleArena {
   floorAppearance PBRAppearance {
     baseColor 1 1 1
     baseColorMap ImageTexture {
-      url [ "grid.png" ]
+      url [ "examples/grid/grid.png" ]
       repeatS TRUE
       repeatT TRUE
       filtering 4

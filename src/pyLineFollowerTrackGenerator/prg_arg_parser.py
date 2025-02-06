@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (c) 2022 - 2024 Andreas Merkle (web@blue-andi.de)
+# Copyright (c) 2022 - 2025 Andreas Merkle (web@blue-andi.de)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -50,7 +50,7 @@ class PrgArgParser():
     def _create_main_parser(self):
         main_parser = argparse.ArgumentParser( \
             description="Generate a Webots world with a random line follower track.",
-            epilog="Copyright (c) 2024 " + __author__ + " - " + __license__ + \
+            epilog="Copyright (c) 2022 - 2025 " + __author__ + " - " + __license__ + \
             " - Find the project on github: " + __repository__)
         main_parser.set_defaults(which="")
 

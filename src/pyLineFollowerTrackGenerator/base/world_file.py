@@ -15,7 +15,7 @@ class WorldFile:
     def _get_header(self, code_format: CodeFormat) -> str:
         line_ending = code_format.line_ending()
 
-        return f"#VRML_SIM R2023b utf8{line_ending}{line_ending}"
+        return f"#VRML_SIM R2025a utf8{line_ending}{line_ending}"
 
     def export(self, code_format: CodeFormat) -> str:
         """Export to string.

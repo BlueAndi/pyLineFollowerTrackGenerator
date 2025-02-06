@@ -24,8 +24,8 @@ class ContactProperties(Node): # pylint: disable=too-few-public-methods
             MFFloat("forceDependentSlip", [ 0 ]),
             SFFloat("softERP", 0.2),
             SFFloat("softCFM", 0.001),
-            SFString("bumpSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/bump.wav"), # pylint: disable=line-too-long
-            SFString("rollSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/roll.wav"), # pylint: disable=line-too-long
-            SFString("slideSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/slide.wav"), # pylint: disable=line-too-long
+            SFString("bumpSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/worlds/sounds/bump.wav"), # pylint: disable=line-too-long
+            SFString("rollSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/worlds/sounds/roll.wav"), # pylint: disable=line-too-long
+            SFString("slideSound", "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/worlds/sounds/slide.wav"), # pylint: disable=line-too-long
             SFInt32("maxContactJoints", 10)
         ])
