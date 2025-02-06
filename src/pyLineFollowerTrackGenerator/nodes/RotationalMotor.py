@@ -16,5 +16,5 @@ class RotationalMotor(Node): # pylint: disable=too-few-public-methods
         self.add_fields([
             SFString("name", [ "rotational, motor" ]),
             SFFloat("maxTorque", 10),
-            SFString("sound", "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/sounds/rotational_motor.wav") # pylint: disable=line-too-long
+            SFString("sound", "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/default/worlds/sounds/rotational_motor.wav") # pylint: disable=line-too-long
         ])

@@ -2,7 +2,7 @@
 
 # MIT License
 #
-# Copyright (c) 2024 Andreas Merkle (web@blue-andi.de)
+# Copyright (c) 2024 - 2025 Andreas Merkle (web@blue-andi.de)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -189,13 +189,13 @@ def _exec(args):
     world_info = create_world_info(world_title, world_description, world_author, world_email, _BASIC_TIME_STEP)
     viewpoint = create_viewpoint(arena_width, arena_height)
 
-    proto_textured_background = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto") # pylint: disable=line-too-long
+    proto_textured_background = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto") # pylint: disable=line-too-long
     textured_background = create_textured_background()
 
-    proto_textured_background_light = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto") # pylint: disable=line-too-long
+    proto_textured_background_light = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto") # pylint: disable=line-too-long
     textured_background_light = create_textured_background_light()
 
-    proto_rectangle_arena = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto") # pylint: disable=line-too-long
+    proto_rectangle_arena = Proto("https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto") # pylint: disable=line-too-long
     rectangle_arena = create_rectangle_arena(arena_width, arena_height, image_file_name)
 
     if add_friction_to_world(world_info, material_ground, material_robot, material_property) is True:
