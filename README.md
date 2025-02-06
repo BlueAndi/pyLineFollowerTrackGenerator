@@ -35,10 +35,10 @@ Example: A arena 2 x 2 m generated with splines through 30 points. The line widt
 ```bash
 $ ./pyLineFollowerTrackGenerator Parameters: etrack -a "Andreas Merkle" -d "Line follower track along a 'E'." -e web@blue-andi.de -mg cardboard -mr rubber -mp dry etrack
 ```
-![example_etrack](./doc/examples/etrack/example_etrack.png)
+![example_etrack](./examples/etrack/example_etrack.png)
 Files:
-* [etrack.wbt](./doc/examples/etrack/etrack.wbt)
-* [etrack.png](./doc/examples/etrack/etrack.png)
+* [etrack.wbt](./examples/etrack/etrack.wbt)
+* [etrack.png](./examples/etrack/etrack.png)
 
 ## Track: Grid
 Geneate a line follower track in a fixed grid by coordinates in a JSON file.
@@ -49,11 +49,11 @@ Example: A arena 3 x 3 m generated with quarter circles. The line width is 1.5 c
 ```bash
 $ .pyLineFollowerTrackGenerator grid -a "Andreas Merkle" -d "Line follower grid track." -e web@blue-andi.de -mg cardboard -mr rubber -mp dry -s 3 grid.wbt grid_points.json
 ```
-![example_grid](./doc/examples/grid/example_grid.png)
+![example_grid](./examples/grid/example_grid.png)
 Files:
-* [grid_points.json](./doc/examples/grid/grid_points.json)
-* [grid.wbt](./doc/examples/grid/grid.wbt)
-* [grid.png](./doc/examples/grid/grid.png)
+* [grid_points.json](./examples/grid/grid_points.json)
+* [grid.wbt](./examples/grid/grid.wbt)
+* [grid.png](./examples/grid/grid.png)
 
 ## Track: Simple
 Generate a simple line follower track with the "simple" command.
@@ -64,10 +64,10 @@ Example: A arena 2 x 2 m generated with splines through 12 points. The line widt
 ```bash
 $ ./pyLineFollowerTrackGenerator simple simple.wbt -s=2 -np=12
 ```
-![example_simple](./doc/examples/simple/example_simple.png)
+![example_simple](./examples/simple/example_simple.png)
 Files:
-* [simple.wbt](./doc/examples/simple/simple.wbt)
-* [simple.png](./doc/examples/simple/simple.png)
+* [simple.wbt](./examples/simple/simple.wbt)
+* [simple.png](./examples/simple/simple.png)
 
 ## Track: &lt;...&gt;
 You are invited to extend it with more different kind of tracks. ;-)
